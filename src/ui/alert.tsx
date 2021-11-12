@@ -1,5 +1,4 @@
 import React from 'react'
-//import { BlurView } from '@react-native-community/blur'
 import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'

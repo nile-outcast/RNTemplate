@@ -1,3 +1,3 @@
 export type IconsProps = {
-  focused: boolean
+  isFocused: boolean
 }
