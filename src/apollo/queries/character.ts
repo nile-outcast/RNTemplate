@@ -6,12 +6,10 @@ export const GET_CHARACTERS = gql`
   ${CORE_CHARACTER_FIELDS}
   query GetCharacters(
     $page: Int
-    filter: {
-      $name: String
-      $species: String
-      $gender: String
-      $status: String
-    }
+    $name: String
+    $species: String
+    $gender: String
+    $status: String
   ) {
     characters(
       page: $page
@@ -23,7 +21,7 @@ export const GET_CHARACTERS = gql`
       }
     ) {
       results {
-        ...CoreCharacterFields    
+        ...CoreCharacterFields
       }
     }
   }
@@ -32,7 +30,7 @@ export const GET_CHARACTERS = gql`
 export const GET_FULL_CHARACTER = gql`
   ${CORE_CHARACTER_FIELDS}
   ${CORE_EPISODE_FIELDS}
-  query GetFullCharacter($id: ID) {
+  query GetFullCharacter($id: ID!) {
     character(id: $id) {
       ...CoreCharacterFields
       species
