@@ -1,3 +1,3 @@
-export { CharacterIcons } from './CharacterIcons'
-export { LocationIcons } from './LocationIcons'
-export { EpisodeIcons } from './EpisodeIcons'
+export { CharacterIcons } from './character-icons'
+export { LocationIcons } from './location-icons'
+export { EpisodeIcons } from './episode-icons'
