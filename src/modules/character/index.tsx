@@ -5,7 +5,7 @@ import { useGetCharactersQuery } from 'src/apollo/graphql'
 
 export const CharacterScreen = () => {
   const { data, loading } = useGetCharactersQuery({
-    variables: { page: 2, name: '', species: '', status: '', gender: '' },
+    variables: { page: 3, name: '', species: '', status: '', gender: '' },
   })
 
   //console.log(data)
@@ -13,7 +13,7 @@ export const CharacterScreen = () => {
 
   return (
     <View>
-      <Text>{data?.characters?.results[1]?.name}</Text>
+      <Text>{data?.characters?.results[10]?.id}</Text>
     </View>
   )
 }
