@@ -2,7 +2,7 @@ overwrite: true
 schema: 'https://rickandmortyapi.com/graphql'
 documents: 'src/apollo/queries'
 generates:
-  src/apollo/graphql.tsx:
+  src/apollo/generated/types-and-hooks.tsx:
     plugins:
       - 'typescript'
       - 'typescript-operations'

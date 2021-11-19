@@ -12,12 +12,13 @@ const Tab = createBottomTabNavigator()
 
 export const TabBar = () => {
   return (
-    <Tab.Navigator initialRouteName={Routes.CharacterScreen}>
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName={Routes.CharacterScreen}>
       <Tab.Screen
         name={Routes.CharacterScreen}
         component={CharacterScreen}
         options={{
-          headerTitle: 'Characters',
           tabBarIcon: ({ focused }) => <View />,
         }}
       />

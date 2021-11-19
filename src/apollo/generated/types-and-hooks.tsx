@@ -201,7 +201,7 @@ export type QueryLocationsByIdsArgs = {
 }
 
 export type GetCharactersQueryVariables = Exact<{
-  page: Scalars['Int']
+  page: InputMaybe<Scalars['Int']>
   name: InputMaybe<Scalars['String']>
   species: InputMaybe<Scalars['String']>
   gender: InputMaybe<Scalars['String']>
@@ -283,7 +283,7 @@ export const CoreEpisodeFieldsFragmentDoc = gql`
 `
 export const GetCharactersDocument = gql`
   query GetCharacters(
-    $page: Int!
+    $page: Int
     $name: String
     $species: String
     $gender: String
@@ -327,7 +327,7 @@ export const GetCharactersDocument = gql`
  * });
  */
 export function useGetCharactersQuery(
-  baseOptions: Apollo.QueryHookOptions<
+  baseOptions?: Apollo.QueryHookOptions<
     GetCharactersQuery,
     GetCharactersQueryVariables
   >,

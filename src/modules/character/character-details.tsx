@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import { useGetFullCharacterQuery } from 'src/apollo/graphql'
+import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
 
 export const CharacterDetails = () => {
   const { data } = useGetFullCharacterQuery({

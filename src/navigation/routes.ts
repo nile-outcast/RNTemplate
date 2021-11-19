@@ -4,9 +4,11 @@ import {
 } from '@react-navigation/native'
 
 export enum Routes {
-  EpisodeScreen = 'EpisodeScreen',
-  CharacterScreen = 'CharacterScreen',
   MainNavigator = 'MainNavigator',
+  CharacterScreen = 'CharacterScreen',
+  CharacterList = 'CharacterList',
+  CharacterDetails = 'CharacterDetails',
+  EpisodeScreen = 'EpisodeScreen',
   LocationScreen = 'LocationScreen',
 }
 

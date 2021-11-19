@@ -1,19 +1,28 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { useGetCharactersQuery } from 'src/apollo/graphql'
+import { Routes } from 'src/navigation/routes'
+import { Header } from 'src/ui/header'
+
+import { CharacterDetails } from './character-details'
+import { CharacterList } from './character-list'
+
+const Stack = createNativeStackNavigator()
 
 export const CharacterScreen = () => {
-  const { data, loading } = useGetCharactersQuery({
-    variables: { page: 3, name: '', species: '', status: '', gender: '' },
-  })
-
-  //console.log(data)
-  //console.log(error)
-
   return (
-    <View>
-      <Text>{data?.characters?.results[10]?.id}</Text>
-    </View>
+    <Stack.Navigator initialRouteName={Routes.CharacterList}>
+      <Stack.Screen
+        name={Routes.CharacterList}
+        component={CharacterList}
+        options={{
+          header: () => <Header title="Character" />,
+        }}
+      />
+      <Stack.Screen
+        name={Routes.CharacterDetails}
+        component={CharacterDetails}
+      />
+    </Stack.Navigator>
   )
 }
