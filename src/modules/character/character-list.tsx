@@ -1,19 +1,29 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { FlatList, Text } from 'react-native'
 import styled from 'styled-components/native'
 
 import { useGetCharactersQuery } from 'src/apollo/generated/types-and-hooks'
+import { colors } from 'src/theme/colors'
+import { CharacterItem } from 'src/ui/character-item'
 
-const Container = styled.SafeAreaView``
+const Container = styled.SafeAreaView`
+  padding: 10px 8px;
+  background-color: ${colors.white};
+`
 
-export const CharacterList = () => {
+export const CharacterListScreen = () => {
   const { data, loading } = useGetCharactersQuery({
-    variables: { page: 3, name: '', species: '', status: '', gender: '' },
+    variables: { page: 1, name: '', species: '', status: '', gender: '' },
   })
 
   return (
-    <View>
-      <Text>{data?.characters?.results[10]?.id}</Text>
-    </View>
+    <Container>
+      <FlatList
+        data={data?.characters.results}
+        renderItem={({ item }) => <CharacterItem character={item} />}
+        horizontal={false}
+        numColumns={2}
+      />
+    </Container>
   )
 }
