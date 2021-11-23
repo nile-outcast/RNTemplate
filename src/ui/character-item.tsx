@@ -5,11 +5,14 @@ import { CoreCharacterFieldsFragment } from 'src/apollo/generated/types-and-hook
 import { Routes, useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
 
+import { TextTitle } from './text-title'
+
 const ItemContainer = styled.TouchableOpacity`
   flex: 1;
-  border-radius: 8px;
+  padding-bottom: 20px;
   margin: 10px 8px;
   border: 1px solid ${colors.gray[4]};
+  border-radius: 8px;
 `
 const Image = styled.Image`
   width: auto;
@@ -24,12 +27,6 @@ const StatusText = styled.Text`
   font-size: 11px;
   line-height: 13px;
   color: ${colors.gray[6]};
-`
-const NameText = styled.Text`
-  font-weight: 900;
-  font-size: 17px;
-  line-height: 22px;
-  margin-bottom: 20px;
 `
 
 type Props = {
@@ -50,7 +47,7 @@ export const CharacterItem = ({ character }: Props) => {
       <Image source={{ uri: character.image }} />
       <InfoBox>
         <StatusText>{character.status}</StatusText>
-        <NameText>{character.name}</NameText>
+        <TextTitle>{character.name}</TextTitle>
       </InfoBox>
     </ItemContainer>
   )

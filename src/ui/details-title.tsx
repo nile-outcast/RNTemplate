@@ -4,13 +4,13 @@ import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
 
+const ImagesContainer = styled.View`
+  height: 150px;
+  background-color: ${colors.gray[5]};
+`
 const BackgroundImage = styled.Image`
   width: auto;
   height: 80px;
-`
-const UnderImage = styled.View`
-  height: 70px;
-  background-color: ${colors.gray[5]};
 `
 const ImageBox = styled.View`
   position: absolute;
@@ -60,15 +60,14 @@ type Props = {
 export const DetailsTitle = ({ image, status, name, species }: Props) => (
   <View>
     {image ? (
-      <>
+      <ImagesContainer>
         <BackgroundImage
           source={require('assets/images/title-background-image.png')}
         />
-        <UnderImage />
         <ImageBox>
           <Image source={{ uri: image }} />
         </ImageBox>
-      </>
+      </ImagesContainer>
     ) : null}
     <InfoBox>
       <StatusText>{status}</StatusText>

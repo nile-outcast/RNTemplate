@@ -1,10 +1,9 @@
 import React from 'react'
+import { BackArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
-
-import { BackArrowIcon } from './icons/back-arrow-icon'
 
 const ButtonContainer = styled.TouchableOpacity`
   position: absolute;

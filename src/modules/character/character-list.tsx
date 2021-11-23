@@ -16,6 +16,9 @@ export const CharacterListScreen = () => {
     variables: { page: 1, name: '', species: '', status: '', gender: '' },
   })
 
+  if (loading) return <Text>{'Loading'}</Text>
+  if (!data) return null
+
   return (
     <Container>
       <FlatList
@@ -23,6 +26,7 @@ export const CharacterListScreen = () => {
         renderItem={({ item }) => <CharacterItem character={item} />}
         horizontal={false}
         numColumns={2}
+        showsVerticalScrollIndicator={false}
       />
     </Container>
   )

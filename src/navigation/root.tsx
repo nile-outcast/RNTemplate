@@ -1,6 +1,7 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { HomeIndicatorIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
@@ -8,7 +9,6 @@ import { CharacterDetailsScreen } from 'src/modules/character'
 import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
 import { HeaderDetails } from 'src/ui/header-details'
-import { HomeIndicator } from 'src/ui/icons/home-indicator'
 
 import { Routes } from './routes'
 import { TabBar } from './tabbar'
@@ -48,7 +48,7 @@ export const RootNavigation = () => {
         />
       </Stack.Navigator>
       <IndicatorBox>
-        <HomeIndicator />
+        <HomeIndicatorIcon />
       </IndicatorBox>
       {visible && <Alert />}
     </Container>

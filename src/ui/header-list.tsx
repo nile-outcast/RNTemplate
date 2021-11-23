@@ -1,9 +1,8 @@
 import React from 'react'
+import { FilterIndicatorIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-
-import { FilterIndicatorIcon } from './icons/filter-indicator-icon'
 
 const Container = styled.View`
   padding: 20px 16px 10px 16px;

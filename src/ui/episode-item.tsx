@@ -1,21 +1,25 @@
 import React from 'react'
+import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { CoreEpisodeFieldsFragment } from 'src/apollo/generated/types-and-hooks'
 import { colors } from 'src/theme/colors'
 
-const Episode = styled.Text`
-  font-weight: 900;
-  font-size: 17px;
-  line-height: 22px;
+import { TextSubtitle } from './text-subtitle'
+import { TextTitle } from './text-title'
+
+const ItemContainer = styled.TouchableOpacity<{ index: number }>`
+  flex-direction: row;
+  align-items: center;
+  padding: 7px 16px 12px 0;
+  border-color: ${colors.black};
+  border-top-width: ${({ index }) => (index === 0 ? 0 : 0.5)}px;
 `
-const EpisodeName = styled.Text`
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 18px;
-  color: ${colors.gray[6]};
+const InfoBox = styled.View`
+  flex: 1;
 `
 const EpisodeDate = styled.Text`
+  margin-top: 5px;
   font-weight: 900;
   font-size: 11px;
   line-height: 13px;
@@ -23,13 +27,17 @@ const EpisodeDate = styled.Text`
 `
 
 type Props = {
+  index: number
   episode: CoreEpisodeFieldsFragment
 }
 
-export const EpisodeItem = ({ episode }: Props) => (
-  <>
-    <Episode>{episode.name}</Episode>
-    <EpisodeName>{episode.name}</EpisodeName>
-    <EpisodeDate>{episode.air_date}</EpisodeDate>
-  </>
+export const EpisodeItem = ({ index, episode }: Props) => (
+  <ItemContainer index={index}>
+    <InfoBox>
+      <TextTitle>{episode.episode}</TextTitle>
+      <TextSubtitle>{episode.name}</TextSubtitle>
+      <EpisodeDate>{episode.air_date.toUpperCase()}</EpisodeDate>
+    </InfoBox>
+    <ArrowIcon />
+  </ItemContainer>
 )
