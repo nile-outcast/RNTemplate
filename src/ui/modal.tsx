@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 import Modal from 'react-native-modal'
 import styled from 'styled-components/native'
 
+import { colors } from 'src/theme/colors'
+
 interface IModalMenu {
   showModal: boolean
   setShowModal: (showModal: boolean) => void
@@ -10,17 +12,19 @@ interface IModalMenu {
 const StyledModal = styled(Modal)`
   margin: 0;
   justify-content: flex-end;
-  height: 100px;
 `
 
 const Container = styled.View`
   overflow: hidden;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: ${colors.white};
 `
 
 const ChildrenBox = styled.View`
-  padding: 20px;
+  align-items: center;
+  padding-top: 5px;
+  padding-bottom: 80px;
 `
 
 export const ModalMenu: FC<IModalMenu> = ({

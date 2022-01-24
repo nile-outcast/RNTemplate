@@ -21,3 +21,24 @@ export type CharacterDetailsScreenProps = RouteProp<
   RootStackParamList,
   Routes.CharacterDetailsScreen
 >
+
+export type TitleProps = {
+  title: string
+}
+
+export enum FilterTitles {
+  Filter = 'Filter',
+  Name = 'Name',
+  Species = 'Species',
+  Type = 'Type',
+  Dimension = 'Dimension',
+  Episode = 'Episode',
+}
+
+export enum FilterSubtitles {
+  Name = 'Give a name',
+  Species = 'Enter species',
+  Type = 'Select one',
+  Dimension = 'Select one',
+  Episode = 'Select one',
+}

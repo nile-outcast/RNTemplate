@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-import { CharacterDetailsScreenProps } from 'src/types'
+import { TitleProps } from 'src/types'
 
 import { BackButton } from './back-button'
 
@@ -18,17 +18,10 @@ const HeaderTitle = styled.Text`
   line-height: 20px;
   color: ${colors.black};
 `
-type Props = {
-  route: CharacterDetailsScreenProps
-}
 
-export const HeaderDetails = ({ route }: Props) => {
-  const { title } = route.params
-
-  return (
-    <Container>
-      <BackButton />
-      <HeaderTitle>{title}</HeaderTitle>
-    </Container>
-  )
-}
+export const HeaderDetails = ({ title }: TitleProps) => (
+  <Container>
+    <BackButton />
+    <HeaderTitle>{title}</HeaderTitle>
+  </Container>
+)

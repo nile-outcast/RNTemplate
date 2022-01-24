@@ -67,16 +67,19 @@ export const CharacterDetailsScreen = ({ route }: RouteProps) => {
             <TextTitle>Gender</TextTitle>
             <TextSubtitle>{data?.character.gender}</TextSubtitle>
           </InfoBox>
+
           <InfoBox>
             <TextTitle>Origin</TextTitle>
             <TextSubtitle>{data?.character.origin.name}</TextSubtitle>
           </InfoBox>
+
           <InfoBox>
             <TextTitle>Type</TextTitle>
             <TextSubtitle>
               {data?.character.type ? data?.character.type : 'Unknown'}
             </TextSubtitle>
           </InfoBox>
+
           <LocationBox>
             <InfoBox isBorder>
               <TextTitle>Location</TextTitle>
@@ -85,6 +88,7 @@ export const CharacterDetailsScreen = ({ route }: RouteProps) => {
             <ArrowIcon />
           </LocationBox>
         </SectionBox>
+
         <SectionTitle>Episodes</SectionTitle>
         <SectionBox>
           {data?.character.episode.map((item, index) => (

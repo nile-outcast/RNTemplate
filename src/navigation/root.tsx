@@ -6,6 +6,7 @@ import styled from 'styled-components/native'
 import { useAlertContext } from 'src/modules/alert-context'
 import { CharacterDetailsScreen } from 'src/modules/character'
 import { colors } from 'src/theme/colors'
+import { RouteProps } from 'src/types'
 import { Alert } from 'src/ui/alert'
 import { HeaderDetails } from 'src/ui/header-details'
 
@@ -37,7 +38,9 @@ export const RootNavigation = () => {
           name={Routes.CharacterDetailsScreen}
           component={CharacterDetailsScreen}
           options={{
-            header: ({ route }) => <HeaderDetails route={route} />,
+            header: ({ route: { params } }: RouteProps) => (
+              <HeaderDetails title={params?.title} />
+            ),
           }}
         />
       </Stack.Navigator>
