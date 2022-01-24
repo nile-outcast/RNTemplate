@@ -1,12 +1,16 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {
+  CharacterIcons,
+  EpisodeIcons,
+  LocationIcons,
+} from 'assets/images/icons'
 
 import { CharacterListScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
 import { colors } from 'src/theme/colors'
 import { HeaderList } from 'src/ui/header-list'
-import { CharacterIcons, EpisodeIcons, LocationIcons } from 'src/ui/icons'
 
 import { Routes } from './routes'
 

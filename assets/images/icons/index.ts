@@ -1,4 +1,6 @@
 export { BackArrowIcon } from './back-arrow-icon'
 export { FilterIndicatorIcon } from './filter-indicator-icon'
-export { HomeIndicatorIcon } from './home-indicator-icon'
 export { ArrowIcon } from './arrow-icon'
+export { CharacterIcons } from './character-icons'
+export { LocationIcons } from './location-icons'
+export { EpisodeIcons } from './episode-icons'
