@@ -1,5 +1,4 @@
 import React from 'react'
-import { View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { CharacterListScreen } from 'src/modules/character'
@@ -7,6 +6,7 @@ import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
 import { colors } from 'src/theme/colors'
 import { HeaderList } from 'src/ui/header-list'
+import { CharacterIcons, EpisodeIcons, LocationIcons } from 'src/ui/icons'
 
 import { Routes } from './routes'
 
@@ -24,7 +24,7 @@ export const TabBar = () => {
         component={CharacterListScreen}
         options={{
           header: () => <HeaderList title="Character" />,
-          tabBarIcon: ({ focused }) => <View />,
+          tabBarIcon: ({ focused }) => <CharacterIcons isFocused={focused} />,
         }}
       />
       <Tab.Screen
@@ -32,7 +32,7 @@ export const TabBar = () => {
         component={LocationScreen}
         options={{
           header: () => <HeaderList title="Location" />,
-          tabBarIcon: ({ focused }) => <View />,
+          tabBarIcon: ({ focused }) => <LocationIcons isFocused={focused} />,
         }}
       />
 
@@ -41,7 +41,7 @@ export const TabBar = () => {
         component={EpisodeScreen}
         options={{
           header: () => <HeaderList title="Episode" />,
-          tabBarIcon: ({ focused }) => <View />,
+          tabBarIcon: ({ focused }) => <EpisodeIcons isFocused={focused} />,
         }}
       />
     </Tab.Navigator>

@@ -19,7 +19,7 @@ const Container = styled.View`
   border-top-right-radius: 20px;
 `
 
-const Blur = styled.View`
+const ChildrenBox = styled.View`
   padding: 20px;
 `
 
@@ -44,7 +44,7 @@ export const ModalMenu: FC<IModalMenu> = ({
       useNativeDriver
       hideModalContentWhileAnimating>
       <Container>
-        <Blur>{children}</Blur>
+        <ChildrenBox>{children}</ChildrenBox>
       </Container>
     </StyledModal>
   )
