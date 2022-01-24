@@ -1,5 +1,4 @@
 import React from 'react'
-import { BlurView } from '@react-native-community/blur'
 import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
@@ -17,7 +16,7 @@ const Wrapper = styled.View`
 
   background-color: #ffffff36;
 `
-const AlertView = styled(BlurView)`
+const AlertView = styled.View`
   padding: 24px;
   border-radius: 24px;
   width: 80%;
@@ -45,7 +44,7 @@ export const Alert = () => {
 
   return (
     <Wrapper>
-      <AlertView blurType={'regular'}>
+      <AlertView>
         <Text>
           <Title>{alertOptions.title}</Title>
           {alertOptions.description && (
