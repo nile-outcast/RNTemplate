@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ModalLine } from 'assets/images/icons'
 
 import { FilterTitles } from 'src/types'
-import { FilterTouchebleField } from 'src/ui/filter-touchable-field'
+import { FilterCheckboxField, FilterTouchableField } from 'src/ui'
 import { HeaderFilter } from 'src/ui/header-filter'
 import { ModalMenu } from 'src/ui/modal'
 
@@ -13,7 +13,10 @@ export const CharacterFilter = () => {
     <ModalMenu showModal={visible} setShowModal={setVisible}>
       <ModalLine />
       <HeaderFilter title={FilterTitles.Filter} />
-      <FilterTouchebleField title={FilterTitles.Name} />
+      <FilterTouchableField title={FilterTitles.Name} />
+      <FilterTouchableField title={FilterTitles.Species} />
+      <FilterCheckboxField title="Status" />
+      <FilterCheckboxField title="Gender" />
     </ModalMenu>
   )
 }

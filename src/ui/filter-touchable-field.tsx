@@ -20,12 +20,13 @@ const Container = styled.TouchableOpacity`
 `
 const InfoBox = styled.View`
   flex: 1;
+  margin-left: 16px;
 `
 type Props = {
   title: keyof typeof FilterTitles & keyof typeof FilterSubtitles
 }
 
-export const FilterTouchebleField = ({ title }: Props) => {
+export const FilterTouchableField = ({ title }: Props) => {
   return (
     <Container>
       <CheckboxIcons isChecked={true} />
