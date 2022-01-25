@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FlatList, Text } from 'react-native'
-import { ModalLine } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useGetCharactersQuery } from 'src/apollo/generated/types-and-hooks'
