@@ -2,8 +2,8 @@ import React from 'react'
 import { BackArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-import { useNavigation } from 'src/navigation/routes'
 import { colors } from 'src/theme/colors'
+import { HeaderTitles } from 'src/types'
 
 const ButtonContainer = styled.TouchableOpacity`
   position: absolute;
@@ -17,14 +17,13 @@ const Text = styled.Text`
   margin-left: 5px;
   color: ${colors.purple};
 `
-
-export const BackButton = () => {
-  const { goBack } = useNavigation()
-
-  return (
-    <ButtonContainer onPress={() => goBack()}>
-      <BackArrowIcon />
-      <Text>Back</Text>
-    </ButtonContainer>
-  )
+type Props = {
+  onPress: () => void
 }
+
+export const BackButton = ({ onPress }: Props) => (
+  <ButtonContainer onPress={onPress}>
+    <BackArrowIcon />
+    <Text>{HeaderTitles.Back}</Text>
+  </ButtonContainer>
+)

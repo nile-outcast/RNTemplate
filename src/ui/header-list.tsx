@@ -3,7 +3,7 @@ import { FilterIndicatorIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-import { FilterTitles, TitleProps } from 'src/types'
+import { HeaderTitles, TitleProps } from 'src/types'
 
 const Container = styled.View`
   padding: 20px 16px 10px 16px;
@@ -37,7 +37,7 @@ export const HeaderList = ({ title }: TitleProps) => {
       <FilterContainer>
         <FilterIndicatorIcon />
         <FilterButton>
-          <ButtonTitle>{FilterTitles.Filter}</ButtonTitle>
+          <ButtonTitle>{HeaderTitles.Filter}</ButtonTitle>
         </FilterButton>
       </FilterContainer>
       <HeaderTitle>{title}</HeaderTitle>

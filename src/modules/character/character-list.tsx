@@ -6,7 +6,7 @@ import { useGetCharactersQuery } from 'src/apollo/generated/types-and-hooks'
 import { colors } from 'src/theme/colors'
 import { CharacterItem } from 'src/ui/character-item'
 
-import { CharacterFilter } from './character-filter'
+import { CharacterFilters } from './character-filters'
 
 const Container = styled.SafeAreaView`
   padding: 10px 8px;
@@ -30,7 +30,7 @@ export const CharacterListScreen = () => {
         numColumns={2}
         showsVerticalScrollIndicator={false}
       />
-      <CharacterFilter />
+      <CharacterFilters />
     </Container>
   )
 }

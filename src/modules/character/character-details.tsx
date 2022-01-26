@@ -6,10 +6,7 @@ import styled from 'styled-components/native'
 import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
 import { colors } from 'src/theme/colors'
 import { RouteProps } from 'src/types'
-import { DetailsTitle } from 'src/ui/details-title'
-import { EpisodeItem } from 'src/ui/episode-item'
-import { TextSubtitle } from 'src/ui/text-subtitle'
-import { TextTitle } from 'src/ui/text-title'
+import { DetailsTitle, EpisodeItem, TextSubtitle, TextTitle } from 'src/ui'
 
 const InfoContainer = styled.ScrollView`
   flex: 1;

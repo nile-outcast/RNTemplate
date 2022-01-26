@@ -1,13 +1,10 @@
 import React, { FC } from 'react'
 import Modal from 'react-native-modal'
+import { ModalLine } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-
-interface IModalMenu {
-  showModal: boolean
-  setShowModal: (showModal: boolean) => void
-}
+import { ModalMenuProps } from 'src/types'
 
 const StyledModal = styled(Modal)`
   margin: 0;
@@ -27,7 +24,7 @@ const ChildrenBox = styled.View`
   padding-bottom: 80px;
 `
 
-export const ModalMenu: FC<IModalMenu> = ({
+export const ModalMenu: FC<ModalMenuProps> = ({
   showModal,
   setShowModal,
   children,
@@ -48,7 +45,10 @@ export const ModalMenu: FC<IModalMenu> = ({
       useNativeDriver
       hideModalContentWhileAnimating>
       <Container>
-        <ChildrenBox>{children}</ChildrenBox>
+        <ChildrenBox>
+          <ModalLine />
+          {children}
+        </ChildrenBox>
       </Container>
     </StyledModal>
   )

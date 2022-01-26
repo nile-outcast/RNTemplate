@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ArrowIcon, CheckboxIcons } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-import { FilterSubtitles, FilterTitles } from 'src/types'
+import { FilterSubtitles, FilterTitleProps, FilterTitles } from 'src/types'
+import { TextSubtitle, TextTitle } from 'src/ui'
 
-import { TextSubtitle } from './text-subtitle'
-import { TextTitle } from './text-title'
+import { SearchModal } from './search-modal'
 
 const Container = styled.TouchableOpacity`
   flex-direction: row;
@@ -22,19 +22,25 @@ const InfoBox = styled.View`
   flex: 1;
   margin-left: 16px;
 `
-type Props = {
-  title: keyof typeof FilterTitles & keyof typeof FilterSubtitles
-}
 
-export const FilterTouchableField = ({ title }: Props) => {
+export const FilterTouchableField = ({ title }: FilterTitleProps) => {
+  const [visible, setVisible] = useState(false)
+
   return (
-    <Container>
-      <CheckboxIcons isChecked={true} />
-      <InfoBox>
-        <TextTitle>{FilterTitles[title]}</TextTitle>
-        <TextSubtitle>{FilterSubtitles[title]}</TextSubtitle>
-      </InfoBox>
-      <ArrowIcon />
-    </Container>
+    <>
+      <Container onPress={() => setVisible(true)}>
+        <CheckboxIcons isChecked={true} />
+        <InfoBox>
+          <TextTitle>{FilterTitles[title]}</TextTitle>
+          <TextSubtitle>{FilterSubtitles[title]}</TextSubtitle>
+        </InfoBox>
+        <ArrowIcon />
+      </Container>
+      <SearchModal
+        title={title}
+        showModal={visible}
+        setShowModal={setVisible}
+      />
+    </>
   )
 }

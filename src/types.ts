@@ -26,6 +26,22 @@ export type TitleProps = {
   title: string
 }
 
+export type FilterTitleProps = {
+  title: keyof typeof FilterTitles & keyof typeof FilterSubtitles
+}
+
+export type ModalMenuProps = {
+  showModal: boolean
+  setShowModal: (showModal: boolean) => void
+}
+
+export enum HeaderTitles {
+  Filter = 'Filter',
+  Clear = 'Clear',
+  Apply = 'APPLY',
+  Back = 'Back',
+}
+
 export enum FilterTitles {
   Filter = 'Filter',
   Name = 'Name',
