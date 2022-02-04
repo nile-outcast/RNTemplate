@@ -6,7 +6,7 @@ import {
   LocationIcons,
 } from 'assets/images/icons'
 
-import { CharacterListScreen } from 'src/modules/character'
+import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
 import { colors } from 'src/theme/colors'
@@ -19,15 +19,14 @@ const Tab = createBottomTabNavigator()
 export const TabBar = () => {
   return (
     <Tab.Navigator
-      initialRouteName={Routes.CharacterListScreen}
+      initialRouteName={Routes.CharacterScreen}
       screenOptions={{
         tabBarStyle: { backgroundColor: colors.headerBackground },
       }}>
       <Tab.Screen
-        name={Routes.CharacterListScreen}
-        component={CharacterListScreen}
+        name={Routes.CharacterScreen}
+        component={CharacterScreen}
         options={{
-          header: () => <HeaderList title="Character" />,
           tabBarIcon: ({ focused }) => <CharacterIcons isFocused={focused} />,
         }}
       />

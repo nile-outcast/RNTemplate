@@ -5,7 +5,7 @@ import {
 
 export enum Routes {
   MainNavigator = 'MainNavigator',
-  CharacterListScreen = 'CharacterListScreen',
+  CharacterScreen = 'CharacterScreen',
   CharacterDetailsScreen = 'CharacterDetailsScreen',
   EpisodeScreen = 'EpisodeScreen',
   LocationScreen = 'LocationScreen',

@@ -18,7 +18,7 @@ const FieldsContainer = styled.View`
   border-top-width: 0.5px;
   border-bottom-width: 0.5px;
 `
-const FieldContainer = styled.View`
+const FieldContainer = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 `
@@ -41,17 +41,21 @@ const TitleBox = styled.View`
 
 type Props = {
   title: keyof typeof filterFields
+  value: string
+  setValue: (value: string) => void
 }
 
-export const FilterCheckboxField = ({ title }: Props) => (
+export const FilterCheckboxField = ({ title, value, setValue }: Props) => (
   <Container>
     <TitleBox>
       <TextSubtitle>{title}</TextSubtitle>
     </TitleBox>
     <FieldsContainer>
       {filterFields[title].map((field, index) => (
-        <FieldContainer key={index}>
-          <CheckboxIcons isChecked={true} />
+        <FieldContainer
+          key={index}
+          onPress={() => setValue(field.toLowerCase())}>
+          <CheckboxIcons isChecked={value === field.toLowerCase()} />
           <InfoBox index={index}>
             <FiledlText>{field}</FiledlText>
           </InfoBox>

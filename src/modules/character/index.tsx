@@ -1,2 +1,2 @@
-export { CharacterListScreen } from './character-list'
+export { CharacterScreen } from './character-screen'
 export { CharacterDetailsScreen } from './character-details'

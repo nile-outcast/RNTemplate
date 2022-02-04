@@ -31,12 +31,16 @@ const HeaderTitle = styled.Text`
   color: ${colors.black};
 `
 
-export const HeaderList = ({ title }: TitleProps) => {
+type Props = TitleProps & {
+  openFilters: () => void
+}
+
+export const HeaderList = ({ title, openFilters, isFiltered }: Props) => {
   return (
     <Container>
       <FilterContainer>
-        <FilterIndicatorIcon />
-        <FilterButton>
+        {isFiltered && <FilterIndicatorIcon />}
+        <FilterButton onPress={openFilters}>
           <ButtonTitle>{HeaderTitles.Filter}</ButtonTitle>
         </FilterButton>
       </FilterContainer>

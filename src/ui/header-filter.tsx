@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
@@ -30,7 +31,7 @@ const FilterTextBox = styled(TextBox)`
 const ApplyTextBox = styled(TextBox)`
   align-items: flex-end;
 `
-const ApplyTextBG = styled.View`
+const ApplyTextBG = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   height: 28px;
@@ -47,16 +48,26 @@ const ApplyText = styled.Text`
 `
 type Props = TitleProps & {
   closeModal?: () => void
+  onClean?: () => void
+  onApply?: () => void
 }
 
-export const HeaderFilter = ({ title, closeModal }: Props) => {
-  const [isFilter] = useState(true)
-
+export const HeaderFilter = ({
+  title,
+  isFiltered,
+  closeModal,
+  onClean,
+  onApply,
+}: Props) => {
   return (
     <Container>
       <TextBox>
         {title === FilterTitles.Filter ? (
-          isFilter && <ClearText>{HeaderTitles.Clear}</ClearText>
+          isFiltered && (
+            <TouchableOpacity onPress={onClean}>
+              <ClearText>{HeaderTitles.Clear}</ClearText>
+            </TouchableOpacity>
+          )
         ) : (
           <BackButton onPress={() => closeModal && closeModal()} />
         )}
@@ -68,7 +79,7 @@ export const HeaderFilter = ({ title, closeModal }: Props) => {
 
       <ApplyTextBox>
         {title === FilterTitles.Filter && (
-          <ApplyTextBG>
+          <ApplyTextBG onPress={onApply}>
             <ApplyText>{HeaderTitles.Apply}</ApplyText>
           </ApplyTextBG>
         )}

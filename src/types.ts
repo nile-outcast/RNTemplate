@@ -24,6 +24,7 @@ export type CharacterDetailsScreenProps = RouteProp<
 
 export type TitleProps = {
   title: string
+  isFiltered?: boolean
 }
 
 export type FilterTitleProps = {
@@ -33,6 +34,11 @@ export type FilterTitleProps = {
 export type ModalMenuProps = {
   showModal: boolean
   setShowModal: (showModal: boolean) => void
+}
+export enum ScreenTitles {
+  Character = 'Character',
+  Location = 'Location',
+  Episode = 'Episode',
 }
 
 export enum HeaderTitles {
