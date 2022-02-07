@@ -26,7 +26,7 @@ export const CharacterScreen = observer(({ navigation }: Props) => {
     characterStore: { params, isFiltered },
   } = useRootStore()
 
-  const { data, loading } = useGetCharactersQuery({
+  const { data, loading, fetchMore } = useGetCharactersQuery({
     variables: params,
   })
 
@@ -44,6 +44,14 @@ export const CharacterScreen = observer(({ navigation }: Props) => {
     })
   }, [isFiltered, navigation])
 
+  const reLoad = async () => {
+    await fetchMore({
+      variables: {
+        page: data?.characters.info.next,
+      },
+    })
+  }
+
   if (loading) return <Loader />
 
   if (!data) return null
@@ -56,6 +64,9 @@ export const CharacterScreen = observer(({ navigation }: Props) => {
         horizontal={false}
         numColumns={2}
         showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        onEndReached={reLoad}
+        onEndReachedThreshold={1}
       />
       <CharacterFilters showModal={visible} setShowModal={setVisible} />
     </Container>

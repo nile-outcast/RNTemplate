@@ -212,6 +212,7 @@ export type GetCharactersQuery = {
   __typename?: 'Query'
   characters: {
     __typename?: 'Characters'
+    info: { __typename?: 'Info'; next: number }
     results: Array<{
       __typename?: 'Character'
       id: string
@@ -298,6 +299,9 @@ export const GetCharactersDocument = gql`
         gender: $gender
       }
     ) {
+      info {
+        next
+      }
       results {
         ...CoreCharacterFields
       }

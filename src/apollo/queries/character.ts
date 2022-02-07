@@ -20,6 +20,9 @@ export const GET_CHARACTERS = gql`
         gender: $gender
       }
     ) {
+      info {
+        next
+      }
       results {
         ...CoreCharacterFields
       }
