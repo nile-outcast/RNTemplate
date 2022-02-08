@@ -6,9 +6,10 @@ import { observer } from 'mobx-react'
 import styled from 'styled-components/native'
 
 import { useGetCharactersQuery } from 'src/apollo/generated/types-and-hooks'
+import { ScreenTitles } from 'src/enums'
+import { reloader } from 'src/modules/utils'
 import { useRootStore } from 'src/store'
 import { colors } from 'src/theme/colors'
-import { ScreenTitles } from 'src/types'
 import { CharacterItem, HeaderList, Loader } from 'src/ui'
 
 import { CharacterFilters } from './character-filters'
@@ -44,30 +45,24 @@ export const CharacterScreen = observer(({ navigation }: Props) => {
     })
   }, [isFiltered, navigation])
 
-  const reLoad = async () => {
-    await fetchMore({
-      variables: {
-        page: data?.characters.info.next,
-      },
-    })
-  }
+  const reload = () => reloader(data?.characters.info.next, fetchMore)
 
   if (loading) return <Loader />
 
-  if (!data) return null
-
   return (
     <Container>
-      <FlatList
-        data={data?.characters.results}
-        renderItem={({ item }) => <CharacterItem character={item} />}
-        horizontal={false}
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        onEndReached={reLoad}
-        onEndReachedThreshold={1}
-      />
+      {data && (
+        <FlatList
+          data={data?.characters.results}
+          renderItem={({ item }) => <CharacterItem character={item} />}
+          horizontal={false}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+          onEndReached={reload}
+          onEndReachedThreshold={1}
+        />
+      )}
       <CharacterFilters showModal={visible} setShowModal={setVisible} />
     </Container>
   )

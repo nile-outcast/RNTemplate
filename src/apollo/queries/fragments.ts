@@ -1,5 +1,12 @@
 import { gql } from '@apollo/client'
 
+export const CORE_INFO_FIELDS = gql`
+  fragment CoreInfoFields on Info {
+    pages
+    next
+  }
+`
+
 export const CORE_CHARACTER_FIELDS = gql`
   fragment CoreCharacterFields on Character {
     id

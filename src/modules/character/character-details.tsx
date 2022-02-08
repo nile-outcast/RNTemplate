@@ -1,12 +1,17 @@
 import React from 'react'
-import { Text } from 'react-native'
 import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
 import { colors } from 'src/theme/colors'
 import { RouteProps } from 'src/types'
-import { DetailsTitle, EpisodeItem, TextSubtitle, TextTitle } from 'src/ui'
+import {
+  DetailsTitle,
+  EpisodeItem,
+  Loader,
+  TextSubtitle,
+  TextTitle,
+} from 'src/ui'
 
 const InfoContainer = styled.ScrollView`
   flex: 1;
@@ -46,10 +51,9 @@ export const CharacterDetailsScreen = ({ route }: RouteProps) => {
     variables: { id },
   })
 
-  if (loading) return <Text>{'Loading'}</Text>
-  if (!data) return null
+  if (loading) return <Loader />
 
-  return (
+  return data ? (
     <>
       <DetailsTitle
         name={data?.character.name}
@@ -94,5 +98,5 @@ export const CharacterDetailsScreen = ({ route }: RouteProps) => {
         </SectionBox>
       </InfoContainer>
     </>
-  )
+  ) : null
 }

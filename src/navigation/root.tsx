@@ -24,10 +24,7 @@ export const RootNavigation = () => {
 
   return (
     <Container>
-      <StatusBar
-        backgroundColor={colors.headerBackground}
-        barStyle="dark-content"
-      />
+      <StatusBar backgroundColor={colors.gray[5]} barStyle="dark-content" />
       <Stack.Navigator initialRouteName={Routes.MainNavigator}>
         <Stack.Screen
           name={Routes.MainNavigator}

@@ -8,7 +8,7 @@ type CharacterInitialState = {
   gender: string
 }
 
-export const characterInitialState: CharacterInitialState = {
+const characterInitialState: CharacterInitialState = {
   page: 1,
   name: '',
   species: '',
@@ -17,6 +17,7 @@ export const characterInitialState: CharacterInitialState = {
 }
 
 export class CharacterStore {
+  initialState = characterInitialState
   params = characterInitialState
   isFiltered = false
 

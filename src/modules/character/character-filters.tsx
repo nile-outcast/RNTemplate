@@ -1,24 +1,36 @@
 import React, { FC, useState } from 'react'
 import { observer } from 'mobx-react'
 
-import { characterInitialState, useRootStore } from 'src/store'
-import { FilterTitles, ModalMenuProps } from 'src/types'
-import { FilterCheckboxField, FilterTouchableField } from 'src/ui'
-import { HeaderFilter, ModalMenu } from 'src/ui'
+import {
+  useGetCharactersNameQuery,
+  useGetCharactersSpeciesQuery,
+} from 'src/apollo/generated/types-and-hooks'
+import { FilterTitles } from 'src/enums'
+import { reloader } from 'src/modules/utils'
+import { useRootStore } from 'src/store'
+import { ModalMenuProps, SearchState } from 'src/types'
+import {
+  FilterCheckboxField,
+  FilterTouchableField,
+  HeaderFilter,
+  ModalMenu,
+} from 'src/ui'
+import { SearchContex } from 'src/ui/utils'
+import { getFlatValues } from 'src/ui/utils/get-flat-values'
 
 import { CheckboxTitles } from './types'
 
 export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
   const {
-    characterStore: { params, isFiltered, setParams },
+    characterStore: { initialState, params, isFiltered, setParams },
   } = useRootStore()
 
-  const [localParams, setLocalePrarams] = useState(params)
+  const [localParams, setLocaleParams] = useState(params)
   const [localIsFiltered, setLocaleIsFiltered] = useState(isFiltered)
 
   const onClean = () => {
     setLocaleIsFiltered(false)
-    setLocalePrarams(characterInitialState)
+    setLocaleParams(initialState)
   }
 
   const onApply = () => {
@@ -28,12 +40,46 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
 
   const setStatus = (value: string) => {
     setLocaleIsFiltered(true)
-    setLocalePrarams({ ...localParams, status: value })
+    setLocaleParams({ ...localParams, status: value })
   }
 
   const setGender = (value: string) => {
     setLocaleIsFiltered(true)
-    setLocalePrarams({ ...localParams, gender: value })
+    setLocaleParams({ ...localParams, gender: value })
+  }
+
+  const names = useGetCharactersNameQuery({
+    variables: { page: 1, name: localParams.name },
+  })
+
+  const namesReloader = () =>
+    reloader(names.data?.characters.info.next, names.fetchMore)
+
+  const species = useGetCharactersSpeciesQuery({
+    variables: { page: 1, species: localParams.species },
+  })
+
+  const speciesReloader = () =>
+    reloader(species.data?.characters.info.next, species.fetchMore)
+
+  const nameContext: SearchState = {
+    results: getFlatValues(names.data?.characters.results),
+    value: localParams.name,
+    reloader: namesReloader,
+    setValue: (value: string) => {
+      setLocaleIsFiltered(true)
+      setLocaleParams({ ...localParams, name: value })
+    },
+  }
+
+  const speciesContext: SearchState = {
+    results: getFlatValues(species.data?.characters.results),
+    value: localParams.species,
+    reloader: speciesReloader,
+    setValue: (value: string) => {
+      setLocaleIsFiltered(true)
+      setLocaleParams({ ...localParams, species: value })
+    },
   }
 
   return (
@@ -45,9 +91,13 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
         onApply={onApply}
       />
 
-      <FilterTouchableField title={FilterTitles.Name} />
+      <SearchContex.Provider value={nameContext}>
+        <FilterTouchableField title={FilterTitles.Name} />
+      </SearchContex.Provider>
 
-      <FilterTouchableField title={FilterTitles.Species} />
+      <SearchContex.Provider value={speciesContext}>
+        <FilterTouchableField title={FilterTitles.Species} />
+      </SearchContex.Provider>
 
       <FilterCheckboxField
         title={CheckboxTitles.Status}

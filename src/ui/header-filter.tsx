@@ -2,8 +2,9 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
+import { FilterTitles, HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { FilterTitles, HeaderTitles, TitleProps } from 'src/types'
+import { TitleProps } from 'src/types'
 import { BackButton } from 'src/ui'
 
 import { FilterTitle } from './filter-title'

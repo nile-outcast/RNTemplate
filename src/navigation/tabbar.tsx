@@ -6,11 +6,11 @@ import {
   LocationIcons,
 } from 'assets/images/icons'
 
+import { ScreenTitles } from 'src/enums'
 import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
 import { colors } from 'src/theme/colors'
-import { HeaderList } from 'src/ui/header-list'
 
 import { Routes } from './routes'
 
@@ -21,12 +21,13 @@ export const TabBar = () => {
     <Tab.Navigator
       initialRouteName={Routes.CharacterScreen}
       screenOptions={{
-        tabBarStyle: { backgroundColor: colors.headerBackground },
+        tabBarStyle: { backgroundColor: colors.gray[5] },
       }}>
       <Tab.Screen
         name={Routes.CharacterScreen}
         component={CharacterScreen}
         options={{
+          title: ScreenTitles.Character,
           tabBarIcon: ({ focused }) => <CharacterIcons isFocused={focused} />,
         }}
       />
@@ -34,7 +35,7 @@ export const TabBar = () => {
         name={Routes.LocationScreen}
         component={LocationScreen}
         options={{
-          header: () => <HeaderList title="Location" />,
+          title: ScreenTitles.Location,
           tabBarIcon: ({ focused }) => <LocationIcons isFocused={focused} />,
         }}
       />
@@ -43,7 +44,7 @@ export const TabBar = () => {
         name={Routes.EpisodeScreen}
         component={EpisodeScreen}
         options={{
-          header: () => <HeaderList title="Episode" />,
+          title: ScreenTitles.Episode,
           tabBarIcon: ({ focused }) => <EpisodeIcons isFocused={focused} />,
         }}
       />

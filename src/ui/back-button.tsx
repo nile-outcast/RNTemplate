@@ -2,8 +2,8 @@ import React from 'react'
 import { BackArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
+import { HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { HeaderTitles } from 'src/types'
 
 const ButtonContainer = styled.TouchableOpacity`
   position: absolute;

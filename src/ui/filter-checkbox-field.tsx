@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 import { colors } from 'src/theme/colors'
 import { TextSubtitle } from 'src/ui'
 
-import { filterFields } from './utils/filterFields'
+import { filterFields } from './utils'
 
 const Container = styled.View`
   width: 100%;

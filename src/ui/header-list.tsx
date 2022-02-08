@@ -2,12 +2,13 @@ import React from 'react'
 import { FilterIndicatorIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
+import { HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { HeaderTitles, TitleProps } from 'src/types'
+import { TitleProps } from 'src/types'
 
 const Container = styled.View`
   padding: 20px 16px 10px 16px;
-  background: ${colors.headerBackground};
+  background: ${colors.gray[5]};
 `
 const FilterContainer = styled.View`
   justify-content: flex-end;

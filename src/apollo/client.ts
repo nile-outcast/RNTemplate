@@ -7,7 +7,7 @@ export const client = new ApolloClient({
       Query: {
         fields: {
           characters: {
-            keyArgs: ['name', 'species', 'status', 'gender'],
+            keyArgs: ['filter', ['name', 'species', 'status', 'gender']],
             merge(existing, incoming) {
               if (existing) {
                 return {

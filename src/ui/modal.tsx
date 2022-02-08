@@ -13,6 +13,7 @@ const StyledModal = styled(Modal)`
 
 const Container = styled.View`
   overflow: hidden;
+  height: 95%;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: ${colors.white};
@@ -21,7 +22,6 @@ const Container = styled.View`
 const ChildrenBox = styled.View`
   align-items: center;
   padding-top: 5px;
-  padding-bottom: 80px;
 `
 
 export const ModalMenu: FC<ModalMenuProps> = ({
@@ -33,7 +33,6 @@ export const ModalMenu: FC<ModalMenuProps> = ({
 
   return (
     <StyledModal
-      avoidKeyboard={true}
       isVisible={showModal}
       onSwipeComplete={closeModal}
       onBackButtonPress={closeModal}

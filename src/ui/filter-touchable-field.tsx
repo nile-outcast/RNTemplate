@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { ArrowIcon, CheckboxIcons } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
+import { FilterSubtitles, FilterTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { FilterSubtitles, FilterTitleProps, FilterTitles } from 'src/types'
+import { FilterTitleProps } from 'src/types'
 import { TextSubtitle, TextTitle } from 'src/ui'
 
 import { SearchModal } from './search-modal'
+import { useSearchContex } from './utils'
 
 const Container = styled.TouchableOpacity`
   flex-direction: row;
@@ -25,11 +27,12 @@ const InfoBox = styled.View`
 
 export const FilterTouchableField = ({ title }: FilterTitleProps) => {
   const [visible, setVisible] = useState(false)
+  const { value } = useSearchContex()
 
   return (
     <>
       <Container onPress={() => setVisible(true)}>
-        <CheckboxIcons isChecked={true} />
+        <CheckboxIcons isChecked={!!value} />
         <InfoBox>
           <TextTitle>{FilterTitles[title]}</TextTitle>
           <TextSubtitle>{FilterSubtitles[title]}</TextSubtitle>
