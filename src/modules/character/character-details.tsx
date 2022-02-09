@@ -3,6 +3,7 @@ import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
+import { RouteProps } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import {
   DetailsTitle,
@@ -11,8 +12,6 @@ import {
   TextSubtitle,
   TextTitle,
 } from 'src/ui'
-
-import { NavigatorProps } from './types'
 
 const InfoContainer = styled.ScrollView`
   flex: 1;
@@ -45,7 +44,7 @@ const LocationBox = styled.TouchableOpacity`
   padding-right: 16px;
 `
 
-export const CharacterDetailsScreen = ({ route }: NavigatorProps) => {
+export const CharacterDetailsScreen = ({ route }: RouteProps) => {
   const { id } = route.params
 
   const { data, loading } = useGetFullCharacterQuery({

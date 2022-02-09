@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
 import { CharacterDetailsScreen } from 'src/modules/character'
+import { OptionProps, RootStackParams } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
 import { HeaderDetails } from 'src/ui/header-details'
@@ -16,7 +17,11 @@ const Container = styled.SafeAreaView`
   flex: 1;
 `
 
-const Stack = createNativeStackNavigator()
+const option = ({ route }: OptionProps) => ({
+  header: () => <HeaderDetails title={route.params.title} />,
+})
+
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParams>()
 
 export const RootNavigation = () => {
   const { visible } = useAlertContext()
@@ -24,22 +29,18 @@ export const RootNavigation = () => {
   return (
     <Container>
       <StatusBar backgroundColor={colors.gray[5]} barStyle="dark-content" />
-      <Stack.Navigator initialRouteName={Routes.MainNavigator}>
-        <Stack.Screen
+      <Navigator initialRouteName={Routes.MainNavigator}>
+        <Screen
           name={Routes.MainNavigator}
           component={TabBar}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
+        <Screen
           name={Routes.CharacterDetailsScreen}
           component={CharacterDetailsScreen}
-          options={{
-            header: ({ route: { params } }) => (
-              <HeaderDetails title={params?.title} />
-            ),
-          }}
+          options={option}
         />
-      </Stack.Navigator>
+      </Navigator>
       {visible && <Alert />}
     </Container>
   )

@@ -17,7 +17,7 @@ import {
 } from 'src/ui'
 import { getFlatValues, SearchContex } from 'src/ui/utils'
 
-import { CheckboxTitles } from './types'
+import { CheckboxTitles } from './enums'
 
 export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
   const {
