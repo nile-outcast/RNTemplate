@@ -1,27 +1,4 @@
-import { RouteProp } from '@react-navigation/native'
-
 import { FilterSubtitles, FilterTitles } from './enums'
-import { Routes } from './navigation/routes'
-
-type Params = {
-  id: string
-  title: string
-}
-
-export type RouteProps = {
-  route: {
-    params: Params
-  }
-}
-
-export type RootStackParamList = {
-  CharacterDetailsScreen: Params
-}
-
-export type CharacterDetailsScreenProps = RouteProp<
-  RootStackParamList,
-  Routes.CharacterDetailsScreen
->
 
 export type TitleProps = {
   title: string

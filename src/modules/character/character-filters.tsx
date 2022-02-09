@@ -15,8 +15,7 @@ import {
   HeaderFilter,
   ModalMenu,
 } from 'src/ui'
-import { SearchContex } from 'src/ui/utils'
-import { getFlatValues } from 'src/ui/utils/get-flat-values'
+import { getFlatValues, SearchContex } from 'src/ui/utils'
 
 import { CheckboxTitles } from './types'
 

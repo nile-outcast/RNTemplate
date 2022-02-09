@@ -6,6 +6,8 @@ import { HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
 import { TitleProps } from 'src/types'
 
+import { TextTitle } from '.'
+
 const Container = styled.View`
   padding: 20px 16px 10px 16px;
   background: ${colors.gray[5]};
@@ -18,12 +20,6 @@ const FilterContainer = styled.View`
 `
 const FilterButton = styled.TouchableOpacity`
   margin-left: 6px;
-`
-const ButtonTitle = styled.Text`
-  font-weight: 900;
-  font-size: 17px;
-  line-height: 22px;
-  color: ${colors.purple};
 `
 const HeaderTitle = styled.Text`
   font-weight: 700;
@@ -42,7 +38,7 @@ export const HeaderList = ({ title, openFilters, isFiltered }: Props) => {
       <FilterContainer>
         {isFiltered && <FilterIndicatorIcon />}
         <FilterButton onPress={openFilters}>
-          <ButtonTitle>{HeaderTitles.Filter}</ButtonTitle>
+          <TextTitle color={colors.purple}>{HeaderTitles.Filter}</TextTitle>
         </FilterButton>
       </FilterContainer>
       <HeaderTitle>{title}</HeaderTitle>

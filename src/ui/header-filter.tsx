@@ -7,7 +7,7 @@ import { colors } from 'src/theme/colors'
 import { TitleProps } from 'src/types'
 import { BackButton } from 'src/ui'
 
-import { FilterTitle } from './filter-title'
+import { HeaderTitle } from './header-title'
 
 const Container = styled.View`
   flex-direction: row;
@@ -75,7 +75,7 @@ export const HeaderFilter = ({
       </TextBox>
 
       <FilterTextBox>
-        <FilterTitle>{title}</FilterTitle>
+        <HeaderTitle>{title}</HeaderTitle>
       </FilterTextBox>
 
       <ApplyTextBox>

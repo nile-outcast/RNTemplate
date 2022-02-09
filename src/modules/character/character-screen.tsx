@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList } from 'react-native'
-import { ParamListBase } from '@react-navigation/native'
-import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { observer } from 'mobx-react'
 import styled from 'styled-components/native'
 
@@ -13,16 +11,14 @@ import { colors } from 'src/theme/colors'
 import { CharacterItem, HeaderList, Loader } from 'src/ui'
 
 import { CharacterFilters } from './character-filters'
+import { NavigatorProps } from './types'
 
 const Container = styled.SafeAreaView`
   padding: 10px 8px;
   background-color: ${colors.white};
 `
-type Props = {
-  navigation: NativeStackNavigationProp<ParamListBase>
-}
 
-export const CharacterScreen = observer(({ navigation }: Props) => {
+export const CharacterScreen = observer(({ navigation }: NavigatorProps) => {
   const {
     characterStore: { params, isFiltered },
   } = useRootStore()

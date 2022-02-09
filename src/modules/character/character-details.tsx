@@ -4,7 +4,6 @@ import styled from 'styled-components/native'
 
 import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
 import { colors } from 'src/theme/colors'
-import { RouteProps } from 'src/types'
 import {
   DetailsTitle,
   EpisodeItem,
@@ -12,6 +11,8 @@ import {
   TextSubtitle,
   TextTitle,
 } from 'src/ui'
+
+import { NavigatorProps } from './types'
 
 const InfoContainer = styled.ScrollView`
   flex: 1;
@@ -44,7 +45,7 @@ const LocationBox = styled.TouchableOpacity`
   padding-right: 16px;
 `
 
-export const CharacterDetailsScreen = ({ route }: RouteProps) => {
+export const CharacterDetailsScreen = ({ route }: NavigatorProps) => {
   const { id } = route.params
 
   const { data, loading } = useGetFullCharacterQuery({

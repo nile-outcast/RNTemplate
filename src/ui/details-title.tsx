@@ -39,6 +39,7 @@ const StatusText = styled.Text`
   color: ${colors.gray[6]};
 `
 const NameText = styled.Text`
+  text-align: center;
   font-weight: 700;
   font-size: 28px;
   line-height: 34px;
