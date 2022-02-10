@@ -12,6 +12,8 @@ target 'RNtemplate' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-voice', :path => '../node_modules/@react-native-voice/voice'
+
   target 'RNtemplateTests' do
     inherit! :complete
     # Pods for testing
