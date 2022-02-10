@@ -1,10 +1,10 @@
-import React from 'react'
-import Svg, { Path } from 'react-native-svg'
+import React, { FC } from 'react'
+import Svg, { Path, SvgProps } from 'react-native-svg'
 
 import { colors } from 'src/theme/colors'
 
-export const ActionIcon = () => (
-  <Svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+export const ActionIcon: FC<SvgProps> = (props) => (
+  <Svg {...props} width="20" height="20" viewBox="0 0 20 20" fill="none">
     <Path
       fill-rule="evenodd"
       clip-rule="evenodd"

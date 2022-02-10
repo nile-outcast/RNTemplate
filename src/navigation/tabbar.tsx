@@ -12,7 +12,7 @@ import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
 import { colors } from 'src/theme/colors'
 
-import { Routes } from './routes'
+import { Routes } from './types'
 
 const Tab = createBottomTabNavigator()
 

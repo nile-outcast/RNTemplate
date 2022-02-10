@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import { useNavigation } from 'src/navigation/routes'
+import { useNavigation } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import { TitleProps } from 'src/types'
 import { BackButton, HeaderTitle } from 'src/ui'

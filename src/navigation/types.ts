@@ -1,8 +1,21 @@
+import { useRoute } from '@react-navigation/native'
+import {
+  NavigationProp,
+  useNavigation as useNativeNavigation,
+} from '@react-navigation/native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
-import { Routes } from './routes'
+export enum Routes {
+  MainNavigator = 'MainNavigator',
+  CharacterScreen = 'CharacterScreen',
+  CharacterDetailsScreen = 'CharacterDetailsScreen',
+  EpisodeScreen = 'EpisodeScreen',
+  EpisodeDetailsScreen = 'EpisodeDetailsScreen',
+  LocationScreen = 'LocationScreen',
+  LocationDetailsScreen = 'LocationDetailsScreen',
+}
 
-export type Params = {
+type Params = {
   id: string
   title: string
 }
@@ -14,11 +27,12 @@ export type RootStackParams = {
   [Routes.LocationDetailsScreen]: Params
 }
 
-export type OptionProps = NativeStackScreenProps<
+export type RootStackOptions = NativeStackScreenProps<
   RootStackParams,
   keyof Omit<RootStackParams, Routes.MainNavigator>
 >
 
-export type RouteProps = {
-  route: OptionProps['route']
-}
+export const useRootStackRoute = () => useRoute<RootStackOptions['route']>()
+
+export const useNavigation = () =>
+  useNativeNavigation<NavigationProp<Record<string, unknown>, Routes>>()

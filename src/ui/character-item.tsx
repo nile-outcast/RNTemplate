@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 
 import { CoreCharacterFieldsFragment } from 'src/apollo/generated/types-and-hooks'
-import { Routes, useNavigation } from 'src/navigation/routes'
+import { Routes, useNavigation } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 
 import { TextTitle } from './text-title'

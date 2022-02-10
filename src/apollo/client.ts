@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
+import { Characters } from './generated/types-and-hooks'
+
 export const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',
   cache: new InMemoryCache({
@@ -8,7 +10,7 @@ export const client = new ApolloClient({
         fields: {
           characters: {
             keyArgs: ['filter', ['name', 'species', 'status', 'gender']],
-            merge(existing, incoming) {
+            merge(existing: Characters, incoming: Characters) {
               if (existing) {
                 return {
                   ...incoming,

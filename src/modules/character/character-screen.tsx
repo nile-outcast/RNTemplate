@@ -6,7 +6,7 @@ import styled from 'styled-components/native'
 import { useGetCharactersQuery } from 'src/apollo/generated/types-and-hooks'
 import { ScreenTitles } from 'src/enums'
 import { reloader } from 'src/modules/utils'
-import { useNavigation } from 'src/navigation/routes'
+import { useNavigation } from 'src/navigation/types'
 import { useRootStore } from 'src/store'
 import { colors } from 'src/theme/colors'
 import { CharacterItem, HeaderList, Loader } from 'src/ui'
@@ -14,6 +14,7 @@ import { CharacterItem, HeaderList, Loader } from 'src/ui'
 import { CharacterFilters } from './character-filters'
 
 const Container = styled.SafeAreaView`
+  height: 100%;
   padding: 10px 8px;
   background-color: ${colors.white};
 `

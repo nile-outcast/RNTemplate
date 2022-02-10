@@ -5,19 +5,18 @@ import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
 import { CharacterDetailsScreen } from 'src/modules/character'
-import { OptionProps, RootStackParams } from 'src/navigation/types'
+import { RootStackOptions, RootStackParams, Routes } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
 import { HeaderDetails } from 'src/ui/header-details'
 
-import { Routes } from './routes'
 import { TabBar } from './tabbar'
 
 const Container = styled.SafeAreaView`
   flex: 1;
 `
 
-const option = ({ route }: OptionProps) => ({
+const option = ({ route }: RootStackOptions) => ({
   header: () => <HeaderDetails title={route.params.title} />,
 })
 

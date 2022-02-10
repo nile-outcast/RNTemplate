@@ -3,7 +3,7 @@ import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
-import { RouteProps } from 'src/navigation/types'
+import { useRootStackRoute } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import {
   DetailsTitle,
@@ -44,8 +44,10 @@ const LocationBox = styled.TouchableOpacity`
   padding-right: 16px;
 `
 
-export const CharacterDetailsScreen = ({ route }: RouteProps) => {
-  const { id } = route.params
+export const CharacterDetailsScreen = () => {
+  const {
+    params: { id },
+  } = useRootStackRoute()
 
   const { data, loading } = useGetFullCharacterQuery({
     variables: { id },
