@@ -14,6 +14,7 @@ import { TabBar } from './tabbar'
 
 const Container = styled.SafeAreaView`
   flex: 1;
+  background-color: ${colors.gray[5]};
 `
 
 const option = ({ route }: RootStackOptions) => ({
