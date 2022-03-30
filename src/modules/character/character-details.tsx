@@ -2,7 +2,7 @@ import React from 'react'
 import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-import { useGetFullCharacterQuery } from 'src/apollo/generated/types-and-hooks'
+import { useGetFullCharacter } from 'src/apollo/character-queries'
 import { useRootStackRoute } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import {
@@ -49,9 +49,7 @@ export const CharacterDetailsScreen = () => {
     params: { id },
   } = useRootStackRoute()
 
-  const { data, loading } = useGetFullCharacterQuery({
-    variables: { id },
-  })
+  const { data, loading } = useGetFullCharacter({ id })
 
   if (loading) return <Loader />
 

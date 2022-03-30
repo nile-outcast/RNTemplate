@@ -4,7 +4,8 @@ import {
   CORE_CHARACTER_FIELDS,
   CORE_EPISODE_FIELDS,
   CORE_INFO_FIELDS,
-} from './fragments'
+  CORE_LOCATION_FIELDS,
+} from 'src/apollo/fragments'
 
 export const GET_CHARACTERS = gql`
   ${CORE_CHARACTER_FIELDS}
@@ -34,9 +35,10 @@ export const GET_CHARACTERS = gql`
     }
   }
 `
-export const GET_CHARACTERS_NAME = gql`
+
+export const GET_CHARACTERS_NAMES = gql`
   ${CORE_INFO_FIELDS}
-  query GetCharactersName($page: Int, $name: String) {
+  query GetCharactersNames($page: Int, $name: String) {
     characters(page: $page, filter: { name: $name }) {
       info {
         ...CoreInfoFields
@@ -47,6 +49,7 @@ export const GET_CHARACTERS_NAME = gql`
     }
   }
 `
+
 export const GET_CHARACTERS_SPECIES = gql`
   ${CORE_INFO_FIELDS}
   query GetCharactersSpecies($page: Int, $species: String) {
@@ -63,6 +66,7 @@ export const GET_CHARACTERS_SPECIES = gql`
 
 export const GET_FULL_CHARACTER = gql`
   ${CORE_CHARACTER_FIELDS}
+  ${CORE_LOCATION_FIELDS}
   ${CORE_EPISODE_FIELDS}
   query GetFullCharacter($id: ID!) {
     character(id: $id) {
@@ -74,8 +78,7 @@ export const GET_FULL_CHARACTER = gql`
         name
       }
       location {
-        id
-        name
+        ...CoreLocationFields
       }
       episode {
         ...CoreEpisodeFields

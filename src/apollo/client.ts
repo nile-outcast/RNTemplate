@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
-import { Characters } from './generated/types-and-hooks'
+import { Characters } from './types'
 
 export const client = new ApolloClient({
   uri: 'https://rickandmortyapi.com/graphql',

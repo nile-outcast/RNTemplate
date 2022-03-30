@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 
 import {
-  useGetCharactersNameQuery,
-  useGetCharactersSpeciesQuery,
-} from 'src/apollo/generated/types-and-hooks'
+  useGetCharactersNames,
+  useGetCharactersSpecies,
+} from 'src/apollo/character-queries'
 import { FilterTitles } from 'src/enums'
 import { reloader } from 'src/modules/utils'
 import { useRootStore } from 'src/store'
@@ -15,7 +15,8 @@ import {
   HeaderFilter,
   ModalMenu,
 } from 'src/ui'
-import { getFlatValues, SearchContex } from 'src/ui/utils'
+import { useGetFlatValues } from 'src/ui/hooks'
+import { SearchContex } from 'src/ui/utils'
 
 import { CheckboxTitles } from './enums'
 
@@ -27,42 +28,51 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
   const [localParams, setLocaleParams] = useState(params)
   const [localIsFiltered, setLocaleIsFiltered] = useState(isFiltered)
 
-  const onClean = () => {
+  const onClean = useCallback(() => {
     setLocaleIsFiltered(false)
     setLocaleParams(initialState)
-  }
+  }, [initialState])
 
-  const onApply = () => {
+  const onApply = useCallback(() => {
     props.setShowModal(false)
     setParams(localParams, localIsFiltered)
-  }
+  }, [localIsFiltered, localParams, props, setParams])
 
-  const setStatus = (value: string) => {
-    setLocaleIsFiltered(true)
-    setLocaleParams({ ...localParams, status: value })
-  }
+  const setStatus = useCallback(
+    (value: string) => {
+      setLocaleIsFiltered(true)
+      setLocaleParams({ ...localParams, status: value })
+    },
+    [localParams],
+  )
 
-  const setGender = (value: string) => {
-    setLocaleIsFiltered(true)
-    setLocaleParams({ ...localParams, gender: value })
-  }
+  const setGender = useCallback(
+    (value: string) => {
+      setLocaleIsFiltered(true)
+      setLocaleParams({ ...localParams, gender: value })
+    },
+    [localParams],
+  )
 
-  const names = useGetCharactersNameQuery({
-    variables: { page: 1, name: localParams.name },
+  const names = useGetCharactersNames({ page: 1, name: localParams.name })
+
+  const namesReloader = useCallback(
+    () => reloader(names.data?.characters.info.next, names.fetchMore),
+    [names.data?.characters.info.next, names.fetchMore],
+  )
+
+  const species = useGetCharactersSpecies({
+    page: 1,
+    species: localParams.species,
   })
 
-  const namesReloader = () =>
-    reloader(names.data?.characters.info.next, names.fetchMore)
-
-  const species = useGetCharactersSpeciesQuery({
-    variables: { page: 1, species: localParams.species },
-  })
-
-  const speciesReloader = () =>
-    reloader(species.data?.characters.info.next, species.fetchMore)
+  const speciesReloader = useCallback(
+    () => reloader(species.data?.characters.info.next, species.fetchMore),
+    [species.data?.characters.info.next, species.fetchMore],
+  )
 
   const nameContext: SearchState = {
-    results: getFlatValues(names.data?.characters.results),
+    results: useGetFlatValues(names.data?.characters.results ?? []),
     value: localParams.name,
     reloader: namesReloader,
     setValue: (value: string) => {
@@ -72,7 +82,7 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
   }
 
   const speciesContext: SearchState = {
-    results: getFlatValues(species.data?.characters.results),
+    results: useGetFlatValues(species.data?.characters.results ?? []),
     value: localParams.species,
     reloader: speciesReloader,
     setValue: (value: string) => {

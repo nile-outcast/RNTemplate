@@ -7,5 +7,6 @@ module.exports = {
   printWidth: 80,
   semi: false,
   arrowParens: 'avoid',
-  endOfLine: 'auto'
+  endOfLine: 'auto',
+  arrowParens: 'always',
 }

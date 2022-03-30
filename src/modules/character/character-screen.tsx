@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { FlatList } from 'react-native'
 import { observer } from 'mobx-react'
 import styled from 'styled-components/native'
 
-import { useGetCharactersQuery } from 'src/apollo/generated/types-and-hooks'
+import { useGetCharacters } from 'src/apollo/character-queries'
 import { ScreenTitles } from 'src/enums'
 import { reloader } from 'src/modules/utils'
 import { useNavigation } from 'src/navigation/types'
@@ -24,9 +24,7 @@ export const CharacterScreen = observer(() => {
     characterStore: { params, isFiltered },
   } = useRootStore()
 
-  const { data, loading, fetchMore } = useGetCharactersQuery({
-    variables: params,
-  })
+  const { data, loading, fetchMore } = useGetCharacters(params)
 
   const { setOptions } = useNavigation()
 
@@ -44,7 +42,10 @@ export const CharacterScreen = observer(() => {
     })
   }, [isFiltered, setOptions])
 
-  const reload = () => reloader(data?.characters.info.next, fetchMore)
+  const reload = useCallback(
+    () => reloader(data?.characters.info.next, fetchMore),
+    [data?.characters.info.next, fetchMore],
+  )
 
   if (loading) return <Loader />
 

@@ -24,3 +24,11 @@ export const CORE_EPISODE_FIELDS = gql`
     episode
   }
 `
+
+export const CORE_LOCATION_FIELDS = gql`
+  fragment CoreLocationFields on Location {
+    id
+    name
+    type
+  }
+`
