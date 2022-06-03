@@ -1,4 +1,5 @@
 import React from 'react'
+import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
 import { CoreCharacter } from 'src/apollo/types'
@@ -8,7 +9,7 @@ import { colors } from 'src/theme/colors'
 import { TextTitle } from './text-title'
 
 const ItemContainer = styled.TouchableOpacity`
-  flex: 1;
+  width: ${(Dimensions.get('window').width - 48) / 2};
   padding-bottom: 20px;
   margin: 10px 8px;
   border: 1px solid ${colors.gray[4]};

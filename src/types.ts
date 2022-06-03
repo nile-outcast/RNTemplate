@@ -17,6 +17,6 @@ export type ModalMenuProps = {
 export type SearchState = {
   results: string[] | undefined
   value: string
-  setValue?: (value: string) => void
-  reloader?: () => void
+  setValue: (value: string) => void
+  reloader: () => void
 }
