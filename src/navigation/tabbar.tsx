@@ -21,7 +21,7 @@ export const TabBar = () => {
     <Tab.Navigator
       initialRouteName={Routes.CharacterScreen}
       screenOptions={{
-        tabBarStyle: { backgroundColor: colors.gray[5] },
+        tabBarStyle: { backgroundColor: colors.barsLightGray },
       }}>
       <Tab.Screen
         name={Routes.CharacterScreen}

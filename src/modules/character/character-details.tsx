@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 
 import { useGetFullCharacter } from 'src/apollo/character-queries'
 import { useRootStackRoute } from 'src/navigation/types'
+import { Routes, useNavigation } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import {
   DetailsTitle,
@@ -12,6 +13,75 @@ import {
   TextSubtitle,
   TextTitle,
 } from 'src/ui'
+
+export const CharacterDetailsScreen = () => {
+  const {
+    params: { id },
+  } = useRootStackRoute()
+
+  const { data, loading } = useGetFullCharacter({ id })
+
+  const { navigate } = useNavigation()
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <>
+      {data && (
+        <>
+          <DetailsTitle
+            name={data.character.name}
+            status={data.character.status}
+            species={data.character.species}
+            image={data.character.image}
+          />
+          <InfoContainer showsVerticalScrollIndicator={false}>
+            <SectionTitle>Informations</SectionTitle>
+            <SectionBox>
+              <InfoBox>
+                <TextTitle>Gender</TextTitle>
+                <TextSubtitle>{data.character.gender}</TextSubtitle>
+              </InfoBox>
+
+              <InfoBox>
+                <TextTitle>Origin</TextTitle>
+                <TextSubtitle>{data.character.origin.name}</TextSubtitle>
+              </InfoBox>
+
+              <InfoBox>
+                <TextTitle>Type</TextTitle>
+                <TextSubtitle>
+                  {data.character.type ? data.character.type : 'Unknown'}
+                </TextSubtitle>
+              </InfoBox>
+
+              <LocationBox
+                onPress={() =>
+                  navigate(Routes.LocationDetailsScreen, {
+                    id: data?.character.location.id,
+                    title: data?.character.location.name,
+                  })
+                }>
+                <InfoBox isBorder>
+                  <TextTitle>Location</TextTitle>
+                  <TextSubtitle>{data?.character.location.name}</TextSubtitle>
+                </InfoBox>
+                <ArrowIcon />
+              </LocationBox>
+            </SectionBox>
+
+            <SectionTitle>Episodes</SectionTitle>
+            <SectionBox>
+              {data.character.episode.map((item, index) => (
+                <EpisodeItem key={index} index={index} episode={item} />
+              ))}
+            </SectionBox>
+          </InfoContainer>
+        </>
+      )}
+    </>
+  )
+}
 
 const InfoContainer = styled.ScrollView`
   flex: 1;
@@ -43,60 +113,3 @@ const LocationBox = styled.TouchableOpacity`
   align-items: center;
   padding-right: 16px;
 `
-
-export const CharacterDetailsScreen = () => {
-  const {
-    params: { id },
-  } = useRootStackRoute()
-
-  const { data, loading } = useGetFullCharacter({ id })
-
-  if (loading) return <Loader />
-
-  return data ? (
-    <>
-      <DetailsTitle
-        name={data?.character.name}
-        status={data?.character.status}
-        species={data?.character.species}
-        image={data?.character.image}
-      />
-      <InfoContainer showsVerticalScrollIndicator={false}>
-        <SectionTitle>Informations</SectionTitle>
-        <SectionBox>
-          <InfoBox>
-            <TextTitle>Gender</TextTitle>
-            <TextSubtitle>{data?.character.gender}</TextSubtitle>
-          </InfoBox>
-
-          <InfoBox>
-            <TextTitle>Origin</TextTitle>
-            <TextSubtitle>{data?.character.origin.name}</TextSubtitle>
-          </InfoBox>
-
-          <InfoBox>
-            <TextTitle>Type</TextTitle>
-            <TextSubtitle>
-              {data?.character.type ? data?.character.type : 'Unknown'}
-            </TextSubtitle>
-          </InfoBox>
-
-          <LocationBox>
-            <InfoBox isBorder>
-              <TextTitle>Location</TextTitle>
-              <TextSubtitle>{data?.character.location.name}</TextSubtitle>
-            </InfoBox>
-            <ArrowIcon />
-          </LocationBox>
-        </SectionBox>
-
-        <SectionTitle>Episodes</SectionTitle>
-        <SectionBox>
-          {data?.character.episode.map((item, index) => (
-            <EpisodeItem key={index} index={index} episode={item} />
-          ))}
-        </SectionBox>
-      </InfoContainer>
-    </>
-  ) : null
-}

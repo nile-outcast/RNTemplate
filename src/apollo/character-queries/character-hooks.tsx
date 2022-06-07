@@ -6,6 +6,7 @@ import {
   CoreEpisode,
   CoreInfo,
   CoreLocation,
+  GetCharactersVars,
 } from 'src/apollo/types'
 
 import {
@@ -19,19 +20,10 @@ type GetCharactersData = {
   characters: Characters
 }
 
-type GetCharactersVars = {
-  page: number
-  name: string
-  species: string
-  gender: string
-  status: string
-}
-
-export const useGetCharacters = (vars: GetCharactersVars) => {
-  return useQuery<GetCharactersData, GetCharactersVars>(GET_CHARACTERS, {
+export const useGetCharacters = (vars: GetCharactersVars) =>
+  useQuery<GetCharactersData, GetCharactersVars>(GET_CHARACTERS, {
     variables: vars,
   })
-}
 
 type GetFullCharacterData = {
   character: CoreCharacter & {
@@ -50,14 +42,10 @@ type GetFullCharacterVars = {
   id: string
 }
 
-export const useGetFullCharacter = (vars: GetFullCharacterVars) => {
-  return useQuery<GetFullCharacterData, GetFullCharacterVars>(
-    GET_FULL_CHARACTER,
-    {
-      variables: vars,
-    },
-  )
-}
+export const useGetFullCharacter = (vars: GetFullCharacterVars) =>
+  useQuery<GetFullCharacterData, GetFullCharacterVars>(GET_FULL_CHARACTER, {
+    variables: vars,
+  })
 
 type GetCharactersNamesData = {
   characters: {
@@ -68,19 +56,15 @@ type GetCharactersNamesData = {
   }
 }
 
-type GetCharactersNamesVars = {
-  page: number
-  name: string
-}
+type GetCharactersNamesVars = Pick<GetCharactersVars, 'page' | 'name'>
 
-export const useGetCharactersNames = (vars: GetCharactersNamesVars) => {
-  return useQuery<GetCharactersNamesData, GetCharactersNamesVars>(
+export const useGetCharactersNames = (vars: GetCharactersNamesVars) =>
+  useQuery<GetCharactersNamesData, GetCharactersNamesVars>(
     GET_CHARACTERS_NAMES,
     {
       variables: vars,
     },
   )
-}
 
 type GetCharactersSpeciesData = {
   characters: {
@@ -91,16 +75,12 @@ type GetCharactersSpeciesData = {
   }
 }
 
-type GetCharactersSpeciesVars = {
-  page: number
-  species: string
-}
+type GetCharactersSpeciesVars = Pick<GetCharactersVars, 'page' | 'species'>
 
-export const useGetCharactersSpecies = (vars: GetCharactersSpeciesVars) => {
-  return useQuery<GetCharactersSpeciesData, GetCharactersSpeciesVars>(
+export const useGetCharactersSpecies = (vars: GetCharactersSpeciesVars) =>
+  useQuery<GetCharactersSpeciesData, GetCharactersSpeciesVars>(
     GET_CHARACTERS_SPECIES,
     {
       variables: vars,
     },
   )
-}

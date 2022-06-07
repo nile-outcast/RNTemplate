@@ -20,3 +20,5 @@ export type SearchState = {
   setValue: (value: string) => void
   reloader: () => void
 }
+
+export type Keys = 'characters' | 'locations' | 'episodes'

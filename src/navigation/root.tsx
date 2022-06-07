@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
 import { CharacterDetailsScreen } from 'src/modules/character'
+import { LocationDetailsScreen } from 'src/modules/location'
 import { RootStackOptions, RootStackParams, Routes } from 'src/navigation/types'
 import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
@@ -14,7 +15,7 @@ import { TabBar } from './tabbar'
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${colors.gray[5]};
+  background-color: ${colors.barsLightGray};
 `
 
 const option = ({ route }: RootStackOptions) => ({
@@ -28,7 +29,10 @@ export const RootNavigation = () => {
 
   return (
     <Container>
-      <StatusBar backgroundColor={colors.gray[5]} barStyle="dark-content" />
+      <StatusBar
+        backgroundColor={colors.barsLightGray}
+        barStyle="dark-content"
+      />
       <Navigator initialRouteName={Routes.MainNavigator}>
         <Screen
           name={Routes.MainNavigator}
@@ -38,6 +42,11 @@ export const RootNavigation = () => {
         <Screen
           name={Routes.CharacterDetailsScreen}
           component={CharacterDetailsScreen}
+          options={option}
+        />
+        <Screen
+          name={Routes.LocationDetailsScreen}
+          component={LocationDetailsScreen}
           options={option}
         />
       </Navigator>

@@ -3,9 +3,8 @@ import Voice, { SpeechResultsEvent } from '@react-native-voice/voice'
 import { ActionIcon, SearchIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
+import { useSearchContex } from 'src/modules/search-context'
 import { colors } from 'src/theme/colors'
-
-import { useSearchContex } from './utils'
 
 const SeachBox = styled.View`
   flex-direction: row;

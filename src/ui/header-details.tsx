@@ -12,7 +12,7 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   padding: 13px 0;
-  background: ${colors.gray[5]};
+  background: ${colors.barsLightGray};
 `
 
 export const HeaderDetails = ({ title }: TitleProps) => {

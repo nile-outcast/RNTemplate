@@ -1,15 +1,8 @@
 import { makeAutoObservable } from 'mobx'
 
-type CharacterInitialState = {
-  page: number
-  name: string
-  species: string
-  status: string
-  gender: string
-}
+import { GetCharactersVars } from 'src/apollo/types'
 
-const characterInitialState: CharacterInitialState = {
-  page: 1,
+const characterInitialState: GetCharactersVars = {
   name: '',
   species: '',
   status: '',
@@ -25,7 +18,7 @@ export class CharacterStore {
     makeAutoObservable(this, {}, { autoBind: true })
   }
 
-  setParams(options: Partial<CharacterInitialState>, isFiltered: boolean) {
+  setParams(options: Partial<GetCharactersVars>, isFiltered: boolean) {
     this.params = {
       ...this.params,
       ...options,

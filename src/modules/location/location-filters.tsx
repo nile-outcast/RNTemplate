@@ -1,34 +1,29 @@
 import React, { FC, useCallback, useState } from 'react'
-import { observer } from 'mobx-react'
 
 import {
-  useGetCharactersNames,
-  useGetCharactersSpecies,
-} from 'src/apollo/character-queries'
+  useGetLocationsDimensions,
+  useGetLocationsNames,
+  useGetLocationsTypes,
+} from 'src/apollo/location-queries'
 import { FilterTitles } from 'src/enums'
-import { useRootStore } from 'src/store'
 import { ModalMenuProps } from 'src/types'
-import {
-  FilterCheckboxField,
-  FilterTouchableField,
-  HeaderFilter,
-  ModalMenu,
-} from 'src/ui'
+import { FilterTouchableField, HeaderFilter, ModalMenu } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
 import { SearchProvider } from '../search-context'
-import { CheckboxTitles } from './enums'
+import { setLocationVar, useLocationVar } from './location-state'
 
-export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
-  const {
-    characterStore: { initialState, params, isFiltered, setParams },
-  } = useRootStore()
+export const LocationFilters: FC<ModalMenuProps> = (props) => {
+  const { initialState, params, isFiltered } = useLocationVar()
 
   const [localParams, setLocaleParams] = useState(params)
   const [localIsFiltered, setLocaleIsFiltered] = useState(isFiltered)
 
-  const names = useGetCharactersNames({ name: localParams.name })
-  const species = useGetCharactersSpecies({ species: localParams.species })
+  const names = useGetLocationsNames({ name: localParams.name })
+  const types = useGetLocationsTypes({ type: localParams.type })
+  const dimensions = useGetLocationsDimensions({
+    dimension: localParams.dimension,
+  })
 
   const onClean = useCallback(() => {
     setLocaleIsFiltered(false)
@@ -37,8 +32,12 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
 
   const onApply = useCallback(() => {
     props.setShowModal(false)
-    setParams(localParams, localIsFiltered)
-  }, [localIsFiltered, localParams, props, setParams])
+    setLocationVar({
+      initialState,
+      params: localParams,
+      isFiltered: localIsFiltered,
+    })
+  }, [initialState, localIsFiltered, localParams, props])
 
   const useSetValue = (key: keyof typeof localParams) => {
     return useCallback(
@@ -52,15 +51,23 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
 
   const nameContext = useGetSearchContext(
     names,
-    'characters',
+    'locations',
     localParams.name,
     useSetValue('name'),
   )
-  const speciesContext = useGetSearchContext(
-    species,
-    'characters',
-    localParams.species,
-    useSetValue('species'),
+
+  const typeContext = useGetSearchContext(
+    types,
+    'locations',
+    localParams.type,
+    useSetValue('type'),
+  )
+
+  const dimensionContext = useGetSearchContext(
+    dimensions,
+    'locations',
+    localParams.dimension,
+    useSetValue('dimension'),
   )
 
   return (
@@ -76,21 +83,13 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
         <FilterTouchableField title={FilterTitles.Name} />
       </SearchProvider>
 
-      <SearchProvider value={speciesContext}>
-        <FilterTouchableField title={FilterTitles.Species} />
+      <SearchProvider value={typeContext}>
+        <FilterTouchableField title={FilterTitles.Type} />
       </SearchProvider>
 
-      <FilterCheckboxField
-        title={CheckboxTitles.Status}
-        value={localParams.status}
-        setValue={useSetValue('status')}
-      />
-
-      <FilterCheckboxField
-        title={CheckboxTitles.Gender}
-        value={localParams.gender}
-        setValue={useSetValue('gender')}
-      />
+      <SearchProvider value={dimensionContext}>
+        <FilterTouchableField title={FilterTitles.Dimension} />
+      </SearchProvider>
     </ModalMenu>
   )
-})
+}
