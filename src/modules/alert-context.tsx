@@ -6,7 +6,6 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import noop from 'lodash/noop'
 
 interface IAlertOptions {
   title: string
@@ -23,8 +22,8 @@ interface IAlertContext {
 
 const InitialValue: IAlertContext = {
   visible: false,
-  showAlert: noop,
-  hideAlert: noop,
+  showAlert: () => undefined,
+  hideAlert: () => undefined,
   alertOptions: { title: '' },
 }
 

@@ -1,1 +1,1 @@
-# RNTemplate
+# Rick and Morty
