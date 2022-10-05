@@ -14,6 +14,7 @@ import { SearchProvider } from '../search-context'
 import { setLocationVar, useLocationVar } from './location-state'
 
 export const LocationFilters: FC<ModalMenuProps> = (props) => {
+  const { setShowModal } = props
   const { initialState, params, isFiltered } = useLocationVar()
 
   const [localParams, setLocaleParams] = useState(params)
@@ -31,13 +32,13 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
   }, [initialState])
 
   const onApply = useCallback(() => {
-    props.setShowModal(false)
+    setShowModal(false)
     setLocationVar({
       initialState,
       params: localParams,
       isFiltered: localIsFiltered,
     })
-  }, [initialState, localIsFiltered, localParams, props])
+  }, [initialState, localIsFiltered, localParams, setShowModal])
 
   const useSetValue = (key: keyof typeof localParams) => {
     return useCallback(

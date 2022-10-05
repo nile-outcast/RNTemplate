@@ -51,20 +51,20 @@ export const CharacterDetailsScreen = () => {
               <InfoBox>
                 <TextTitle>Type</TextTitle>
                 <TextSubtitle>
-                  {data.character.type ? data.character.type : 'Unknown'}
+                  {data.character.type ? data.character.type : 'unknown'}
                 </TextSubtitle>
               </InfoBox>
 
               <LocationBox
                 onPress={() =>
                   navigate(Routes.LocationDetailsScreen, {
-                    id: data?.character.location.id,
-                    title: data?.character.location.name,
+                    id: data.character.location.id,
+                    title: data.character.location.name,
                   })
                 }>
                 <InfoBox isBorder>
                   <TextTitle>Location</TextTitle>
-                  <TextSubtitle>{data?.character.location.name}</TextSubtitle>
+                  <TextSubtitle>{data.character.location.name}</TextSubtitle>
                 </InfoBox>
                 <ArrowIcon />
               </LocationBox>
