@@ -20,8 +20,8 @@ export const ItemContainer: FC<Props> = ({
   <Container {...props} height={children ? 220 : 80}>
     {children}
     <InfoBox>
-      <SubText>{subtext}</SubText>
-      <TextTitle>{name}</TextTitle>
+      <SubText numberOfLines={1}>{subtext}</SubText>
+      <TextTitle numberOfLines={2}>{name}</TextTitle>
     </InfoBox>
   </Container>
 )

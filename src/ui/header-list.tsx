@@ -37,7 +37,9 @@ export const HeaderList = ({ title, openFilters, isFiltered }: Props) => (
     <FilterContainer>
       {isFiltered && <FilterIndicatorIcon />}
       <FilterButton onPress={openFilters}>
-        <TextTitle color={colors.purple}>{HeaderTitles.Filter}</TextTitle>
+        <TextTitle style={{ color: colors.purple }}>
+          {HeaderTitles.Filter}
+        </TextTitle>
       </FilterButton>
     </FilterContainer>
     <HeaderTitle>{title}</HeaderTitle>
