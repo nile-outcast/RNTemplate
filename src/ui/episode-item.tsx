@@ -2,7 +2,7 @@ import React from 'react'
 import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-import { CoreEpisodeFieldsFragment } from 'src/apollo/generated/types-and-hooks'
+import { CoreEpisode } from 'src/apollo/types'
 import { colors } from 'src/theme/colors'
 
 import { TextSubtitle } from './text-subtitle'
@@ -28,7 +28,7 @@ const EpisodeDate = styled.Text`
 
 type Props = {
   index: number
-  episode: CoreEpisodeFieldsFragment
+  episode: CoreEpisode
 }
 
 export const EpisodeItem = ({ index, episode }: Props) => (

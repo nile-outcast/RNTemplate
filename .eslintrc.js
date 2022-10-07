@@ -29,8 +29,6 @@ module.exports = {
         allowTemplateLiterals: true,
       },
     ],
-    'react/jsx-no-literals': 'off',
-    'react-native/no-raw-text': 'off',
 
     'padding-line-between-statements': [
       'error',
@@ -56,13 +54,6 @@ module.exports = {
       },
     ],
     'prefer-const': ['error'],
-    'simple-import-sort/imports': [
-      'warn',
-      {
-        groups: [['^\\u0000'], ['^react', '^[^.]'], ['^src/'], ['^\\.']],
-      },
-    ],
-
     'max-lines': ['error', 500],
     'no-console': 'error',
     'object-shorthand': 'error',
@@ -70,6 +61,7 @@ module.exports = {
     'no-nested-ternary': 'error',
     'newline-before-return': 'warn',
     semi: ['error', 'never'],
+    'no-shadow': 'off',
 
     // prettier
     'prettier/prettier': [
@@ -84,6 +76,14 @@ module.exports = {
       },
     ],
 
+    'simple-import-sort/imports': [
+      'warn',
+      {
+        groups: [['^\\u0000'], ['^react', '^[^.]'], ['^src/'], ['^\\.']],
+      },
+    ],
+
+    // imports
     'import/newline-after-import': 'error',
     'import/no-cycle': 'error',
     'import/no-unused-modules': 'error',
@@ -91,6 +91,7 @@ module.exports = {
 
     // react
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
+    'react/jsx-no-literals': 'off',
     'react/sort-comp': 'warn',
 
     // react-native
@@ -98,13 +99,14 @@ module.exports = {
     'react-native/split-platform-components': 'warn',
     'react-native/no-color-literals': 'error',
     'react-native/no-single-element-style-arrays': 'error',
+    'react-native/no-raw-text': 'off',
 
     // promise
     // 'promise/prefer-await-to-then': 'warn',
     // 'promise/prefer-await-to-callbacks': 'warn',
 
+    // ts
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
   },
 }

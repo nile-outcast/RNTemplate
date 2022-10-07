@@ -1,21 +1,18 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
-import { observer } from 'mobx-react'
 
-import { useGetCharacters } from 'src/apollo/character-queries'
+import { useGetLocations } from 'src/apollo/location-queries'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation/types'
-import { useRootStore } from 'src/store'
 import { Keys } from 'src/types'
 import { HeaderList, ScreenList } from 'src/ui'
 
-import { CharacterFilters } from './character-filters'
+import { LocationFilters } from './location-filters'
+import { useLocationVar } from './location-state'
 
-export const CharacterScreen = observer(() => {
-  const {
-    characterStore: { params, isFiltered },
-  } = useRootStore()
+export const LocationScreen = () => {
+  const { params, isFiltered } = useLocationVar()
 
-  const data = useGetCharacters(params)
+  const data = useGetLocations(params)
 
   const { setOptions } = useNavigation()
 
@@ -25,7 +22,7 @@ export const CharacterScreen = observer(() => {
     setOptions({
       header: () => (
         <HeaderList
-          title={ScreenTitles.Character}
+          title={ScreenTitles.Location}
           openFilters={() => setVisible(true)}
           isFiltered={isFiltered}
         />
@@ -36,8 +33,8 @@ export const CharacterScreen = observer(() => {
   const closeModal = useCallback(() => setVisible(false), [])
 
   return (
-    <ScreenList data={data} dataKey={Keys.Characters}>
-      <CharacterFilters showModal={visible} closeModal={closeModal} />
+    <ScreenList data={data} dataKey={Keys.Locations}>
+      <LocationFilters showModal={visible} closeModal={closeModal} />
     </ScreenList>
   )
-})
+}

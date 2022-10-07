@@ -11,12 +11,18 @@ export type FilterTitleProps = {
 
 export type ModalMenuProps = {
   showModal: boolean
-  setShowModal: (showModal: boolean) => void
+  closeModal: () => void
 }
 
 export type SearchState = {
   results: string[] | undefined
   value: string
-  setValue?: (value: string) => void
-  reloader?: () => void
+  setValue: (value: string) => void
+  reloader: () => void
+}
+
+export enum Keys {
+  Characters = 'characters',
+  Locations = 'locations',
+  Episodes = 'episodes',
 }

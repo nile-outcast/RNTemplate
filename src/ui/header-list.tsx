@@ -10,7 +10,7 @@ import { TextTitle } from '.'
 
 const Container = styled.View`
   padding: 20px 16px 10px 16px;
-  background: ${colors.gray[5]};
+  background: ${colors.barsLightGray};
 `
 const FilterContainer = styled.View`
   justify-content: flex-end;
@@ -32,16 +32,16 @@ type Props = TitleProps & {
   openFilters: () => void
 }
 
-export const HeaderList = ({ title, openFilters, isFiltered }: Props) => {
-  return (
-    <Container>
-      <FilterContainer>
-        {isFiltered && <FilterIndicatorIcon />}
-        <FilterButton onPress={openFilters}>
-          <TextTitle color={colors.purple}>{HeaderTitles.Filter}</TextTitle>
-        </FilterButton>
-      </FilterContainer>
-      <HeaderTitle>{title}</HeaderTitle>
-    </Container>
-  )
-}
+export const HeaderList = ({ title, openFilters, isFiltered }: Props) => (
+  <Container>
+    <FilterContainer>
+      {isFiltered && <FilterIndicatorIcon />}
+      <FilterButton onPress={openFilters}>
+        <TextTitle style={{ color: colors.purple }}>
+          {HeaderTitles.Filter}
+        </TextTitle>
+      </FilterButton>
+    </FilterContainer>
+    <HeaderTitle>{title}</HeaderTitle>
+  </Container>
+)

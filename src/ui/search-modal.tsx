@@ -3,11 +3,10 @@ import { FlatList } from 'react-native'
 import styled from 'styled-components/native'
 
 import { FilterTitles } from 'src/enums'
+import { useSearchContex } from 'src/modules/search-context'
 import { colors } from 'src/theme/colors'
 import { FilterTitleProps, ModalMenuProps } from 'src/types'
 import { HeaderFilter, ModalMenu, Search } from 'src/ui'
-
-import { useSearchContex } from './utils'
 
 type Props = ModalMenuProps & FilterTitleProps
 
@@ -44,10 +43,7 @@ export const SearchModal: FC<Props> = ({ title, ...props }) => {
 
   return (
     <ModalMenu {...props}>
-      <HeaderFilter
-        title={FilterTitles[title]}
-        closeModal={() => props.setShowModal(false)}
-      />
+      <HeaderFilter title={FilterTitles[title]} closeModal={props.closeModal} />
       <Search />
       <ResultContainer>
         {results && (

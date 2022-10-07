@@ -59,32 +59,30 @@ export const HeaderFilter = ({
   closeModal,
   onClean,
   onApply,
-}: Props) => {
-  return (
-    <Container>
-      <TextBox>
-        {title === FilterTitles.Filter ? (
-          isFiltered && (
-            <TouchableOpacity onPress={onClean}>
-              <ClearText>{HeaderTitles.Clear}</ClearText>
-            </TouchableOpacity>
-          )
-        ) : (
-          <BackButton onPress={() => closeModal && closeModal()} />
-        )}
-      </TextBox>
+}: Props) => (
+  <Container>
+    <TextBox>
+      {title === FilterTitles.Filter ? (
+        isFiltered && (
+          <TouchableOpacity onPress={onClean}>
+            <ClearText>{HeaderTitles.Clear}</ClearText>
+          </TouchableOpacity>
+        )
+      ) : (
+        <BackButton onPress={() => closeModal && closeModal()} />
+      )}
+    </TextBox>
 
-      <FilterTextBox>
-        <HeaderTitle>{title}</HeaderTitle>
-      </FilterTextBox>
+    <FilterTextBox>
+      <HeaderTitle>{title}</HeaderTitle>
+    </FilterTextBox>
 
-      <ApplyTextBox>
-        {title === FilterTitles.Filter && (
-          <ApplyTextBG onPress={onApply}>
-            <ApplyText>{HeaderTitles.Apply}</ApplyText>
-          </ApplyTextBG>
-        )}
-      </ApplyTextBox>
-    </Container>
-  )
-}
+    <ApplyTextBox>
+      {title === FilterTitles.Filter && (
+        <ApplyTextBG onPress={onApply}>
+          <ApplyText>{HeaderTitles.Apply}</ApplyText>
+        </ApplyTextBG>
+      )}
+    </ApplyTextBox>
+  </Container>
+)
