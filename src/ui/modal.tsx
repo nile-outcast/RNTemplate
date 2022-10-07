@@ -1,29 +1,30 @@
 import React, { FC } from 'react'
 import Modal from 'react-native-modal'
+import { ModalLine } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-interface IModalMenu {
-  showModal: boolean
-  setShowModal: (showModal: boolean) => void
-}
+import { colors } from 'src/theme/colors'
+import { ModalMenuProps } from 'src/types'
 
 const StyledModal = styled(Modal)`
   margin: 0;
   justify-content: flex-end;
-  height: 100px;
 `
 
 const Container = styled.View`
   overflow: hidden;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  height: 95%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: ${colors.white};
 `
 
 const ChildrenBox = styled.View`
-  padding: 20px;
+  align-items: center;
+  padding-top: 5px;
 `
 
-export const ModalMenu: FC<IModalMenu> = ({
+export const ModalMenu: FC<ModalMenuProps> = ({
   showModal,
   setShowModal,
   children,
@@ -32,7 +33,6 @@ export const ModalMenu: FC<IModalMenu> = ({
 
   return (
     <StyledModal
-      avoidKeyboard={true}
       isVisible={showModal}
       onSwipeComplete={closeModal}
       onBackButtonPress={closeModal}
@@ -44,7 +44,10 @@ export const ModalMenu: FC<IModalMenu> = ({
       useNativeDriver
       hideModalContentWhileAnimating>
       <Container>
-        <ChildrenBox>{children}</ChildrenBox>
+        <ChildrenBox>
+          <ModalLine />
+          {children}
+        </ChildrenBox>
       </Container>
     </StyledModal>
   )

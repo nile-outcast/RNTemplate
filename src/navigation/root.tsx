@@ -1,25 +1,47 @@
 import React from 'react'
+import { StatusBar } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
+import { CharacterDetailsScreen } from 'src/modules/character'
+import { RootStackOptions, RootStackParams, Routes } from 'src/navigation/types'
+import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
+import { HeaderDetails } from 'src/ui/header-details'
 
-import { Routes } from './routes'
 import { TabBar } from './tabbar'
 
-const Stack = createNativeStackNavigator()
+const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${colors.gray[5]};
+`
+
+const option = ({ route }: RootStackOptions) => ({
+  header: () => <HeaderDetails title={route.params.title} />,
+})
+
+const { Navigator, Screen } = createNativeStackNavigator<RootStackParams>()
 
 export const RootNavigation = () => {
   const { visible } = useAlertContext()
 
   return (
-    <React.Fragment>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={Routes.MainNavigator}>
-        <Stack.Screen name={Routes.MainNavigator} component={TabBar} />
-      </Stack.Navigator>
+    <Container>
+      <StatusBar backgroundColor={colors.gray[5]} barStyle="dark-content" />
+      <Navigator initialRouteName={Routes.MainNavigator}>
+        <Screen
+          name={Routes.MainNavigator}
+          component={TabBar}
+          options={{ headerShown: false }}
+        />
+        <Screen
+          name={Routes.CharacterDetailsScreen}
+          component={CharacterDetailsScreen}
+          options={option}
+        />
+      </Navigator>
       {visible && <Alert />}
-    </React.Fragment>
+    </Container>
   )
 }

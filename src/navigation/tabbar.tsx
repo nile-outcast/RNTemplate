@@ -1,24 +1,33 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {
+  CharacterIcons,
+  EpisodeIcons,
+  LocationIcons,
+} from 'assets/images/icons'
 
+import { ScreenTitles } from 'src/enums'
 import { CharacterScreen } from 'src/modules/character'
 import { EpisodeScreen } from 'src/modules/episode'
 import { LocationScreen } from 'src/modules/location'
-import { CharacterIcons, EpisodeIcons, LocationIcons } from 'src/ui/icons'
+import { colors } from 'src/theme/colors'
 
-import { Routes } from './routes'
+import { Routes } from './types'
 
 const Tab = createBottomTabNavigator()
 
 export const TabBar = () => {
   return (
-    <Tab.Navigator initialRouteName={Routes.CharacterScreen}>
+    <Tab.Navigator
+      initialRouteName={Routes.CharacterScreen}
+      screenOptions={{
+        tabBarStyle: { backgroundColor: colors.gray[5] },
+      }}>
       <Tab.Screen
         name={Routes.CharacterScreen}
         component={CharacterScreen}
         options={{
-          title: 'Character',
-          headerTitle: 'Characters',
+          title: ScreenTitles.Character,
           tabBarIcon: ({ focused }) => <CharacterIcons isFocused={focused} />,
         }}
       />
@@ -26,8 +35,7 @@ export const TabBar = () => {
         name={Routes.LocationScreen}
         component={LocationScreen}
         options={{
-          title: 'Location',
-          headerTitle: 'Location',
+          title: ScreenTitles.Location,
           tabBarIcon: ({ focused }) => <LocationIcons isFocused={focused} />,
         }}
       />
@@ -36,8 +44,7 @@ export const TabBar = () => {
         name={Routes.EpisodeScreen}
         component={EpisodeScreen}
         options={{
-          title: 'Episode',
-          headerTitle: 'Episode',
+          title: ScreenTitles.Episode,
           tabBarIcon: ({ focused }) => <EpisodeIcons isFocused={focused} />,
         }}
       />
