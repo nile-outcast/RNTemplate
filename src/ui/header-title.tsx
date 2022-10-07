@@ -1,12 +1,8 @@
-import React, { FC } from 'react'
 import styled from 'styled-components/native'
 
-const HeaderText = styled.Text`
+export const HeaderTitle = styled.Text`
   font-weight: 900;
   font-size: 15px;
   line-height: 20px;
+  text-align: center;
 `
-
-export const HeaderTitle: FC = ({ children }) => (
-  <HeaderText>{children}</HeaderText>
-)

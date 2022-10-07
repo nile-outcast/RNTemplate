@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { ArrowIcon, CheckboxIcons } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
@@ -13,22 +13,22 @@ import { SearchModal } from './search-modal'
 export const FilterTouchableField = ({ title }: FilterTitleProps) => {
   const [visible, setVisible] = useState(false)
   const { value } = useSearchContex()
+  const closeModal = useCallback(() => setVisible(false), [])
 
   return (
     <>
       <Container onPress={() => setVisible(true)}>
         <CheckboxIcons isChecked={!!value} />
+
         <InfoBox>
           <TextTitle>{FilterTitles[title]}</TextTitle>
           <TextSubtitle>{FilterSubtitles[title]}</TextSubtitle>
         </InfoBox>
+
         <ArrowIcon />
       </Container>
-      <SearchModal
-        title={title}
-        showModal={visible}
-        setShowModal={setVisible}
-      />
+
+      <SearchModal title={title} showModal={visible} closeModal={closeModal} />
     </>
   )
 }

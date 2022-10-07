@@ -7,7 +7,7 @@ import {
 } from 'src/apollo/character-queries'
 import { FilterTitles } from 'src/enums'
 import { useRootStore } from 'src/store'
-import { ModalMenuProps } from 'src/types'
+import { Keys, ModalMenuProps } from 'src/types'
 import {
   FilterCheckboxField,
   FilterTouchableField,
@@ -20,6 +20,7 @@ import { SearchProvider } from '../search-context'
 import { CheckboxTitles } from './enums'
 
 export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
+  const { closeModal } = props
   const {
     characterStore: { initialState, params, isFiltered, setParams },
   } = useRootStore()
@@ -36,9 +37,9 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
   }, [initialState])
 
   const onApply = useCallback(() => {
-    props.setShowModal(false)
+    closeModal()
     setParams(localParams, localIsFiltered)
-  }, [localIsFiltered, localParams, props, setParams])
+  }, [localIsFiltered, localParams, closeModal, setParams])
 
   const useSetValue = (key: keyof typeof localParams) => {
     return useCallback(
@@ -52,13 +53,13 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
 
   const nameContext = useGetSearchContext(
     names,
-    'characters',
+    Keys.Characters,
     localParams.name,
     useSetValue('name'),
   )
   const speciesContext = useGetSearchContext(
     species,
-    'characters',
+    Keys.Characters,
     localParams.species,
     useSetValue('species'),
   )

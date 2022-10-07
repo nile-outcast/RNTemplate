@@ -13,16 +13,17 @@ type Props = {
 export const CharacterItem = ({ character }: Props) => {
   const { navigate } = useNavigation()
 
+  const onPress = () =>
+    navigate(Routes.CharacterDetailsScreen, {
+      id: character.id,
+      title: character.name,
+    })
+
   return (
     <ItemContainer
       name={character.name}
       subtext={character.status}
-      onPress={() =>
-        navigate(Routes.CharacterDetailsScreen, {
-          id: character.id,
-          title: character.name,
-        })
-      }>
+      onPress={onPress}>
       <Image source={{ uri: character.image }} />
     </ItemContainer>
   )

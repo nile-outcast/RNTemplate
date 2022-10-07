@@ -26,29 +26,25 @@ const ChildrenBox = styled.View`
 
 export const ModalMenu: FC<ModalMenuProps> = ({
   showModal,
-  setShowModal,
+  closeModal,
   children,
-}) => {
-  const closeModal = () => setShowModal(false)
-
-  return (
-    <StyledModal
-      isVisible={showModal}
-      onSwipeComplete={closeModal}
-      onBackButtonPress={closeModal}
-      onBackdropPress={closeModal}
-      swipeDirection={['down']}
-      useNativeDriverForBackdrop
-      statusBarTranslucent
-      backdropOpacity={0.1}
-      useNativeDriver
-      hideModalContentWhileAnimating>
-      <Container>
-        <ChildrenBox>
-          <ModalLine />
-          {children}
-        </ChildrenBox>
-      </Container>
-    </StyledModal>
-  )
-}
+}) => (
+  <StyledModal
+    isVisible={showModal}
+    onSwipeComplete={closeModal}
+    onBackButtonPress={closeModal}
+    onBackdropPress={closeModal}
+    swipeDirection={['down']}
+    useNativeDriverForBackdrop
+    statusBarTranslucent
+    backdropOpacity={0.1}
+    useNativeDriver
+    hideModalContentWhileAnimating>
+    <Container>
+      <ChildrenBox>
+        <ModalLine />
+        {children}
+      </ChildrenBox>
+    </Container>
+  </StyledModal>
+)

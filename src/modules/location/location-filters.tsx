@@ -6,7 +6,7 @@ import {
   useGetLocationsTypes,
 } from 'src/apollo/location-queries'
 import { FilterTitles } from 'src/enums'
-import { ModalMenuProps } from 'src/types'
+import { Keys, ModalMenuProps } from 'src/types'
 import { FilterTouchableField, HeaderFilter, ModalMenu } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
@@ -14,7 +14,7 @@ import { SearchProvider } from '../search-context'
 import { setLocationVar, useLocationVar } from './location-state'
 
 export const LocationFilters: FC<ModalMenuProps> = (props) => {
-  const { setShowModal } = props
+  const { closeModal } = props
   const { initialState, params, isFiltered } = useLocationVar()
 
   const [localParams, setLocaleParams] = useState(params)
@@ -32,13 +32,13 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
   }, [initialState])
 
   const onApply = useCallback(() => {
-    setShowModal(false)
+    closeModal()
     setLocationVar({
       initialState,
       params: localParams,
       isFiltered: localIsFiltered,
     })
-  }, [initialState, localIsFiltered, localParams, setShowModal])
+  }, [initialState, localIsFiltered, localParams, closeModal])
 
   const useSetValue = (key: keyof typeof localParams) => {
     return useCallback(
@@ -52,21 +52,21 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
 
   const nameContext = useGetSearchContext(
     names,
-    'locations',
+    Keys.Locations,
     localParams.name,
     useSetValue('name'),
   )
 
   const typeContext = useGetSearchContext(
     types,
-    'locations',
+    Keys.Locations,
     localParams.type,
     useSetValue('type'),
   )
 
   const dimensionContext = useGetSearchContext(
     dimensions,
-    'locations',
+    Keys.Locations,
     localParams.dimension,
     useSetValue('dimension'),
   )

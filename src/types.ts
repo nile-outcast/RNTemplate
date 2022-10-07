@@ -11,7 +11,7 @@ export type FilterTitleProps = {
 
 export type ModalMenuProps = {
   showModal: boolean
-  setShowModal: (showModal: boolean) => void
+  closeModal: () => void
 }
 
 export type SearchState = {
@@ -21,4 +21,8 @@ export type SearchState = {
   reloader: () => void
 }
 
-export type Keys = 'characters' | 'locations' | 'episodes'
+export enum Keys {
+  Characters = 'characters',
+  Locations = 'locations',
+  Episodes = 'episodes',
+}

@@ -43,10 +43,7 @@ export const SearchModal: FC<Props> = ({ title, ...props }) => {
 
   return (
     <ModalMenu {...props}>
-      <HeaderFilter
-        title={FilterTitles[title]}
-        closeModal={() => props.setShowModal(false)}
-      />
+      <HeaderFilter title={FilterTitles[title]} closeModal={props.closeModal} />
       <Search />
       <ResultContainer>
         {results && (
