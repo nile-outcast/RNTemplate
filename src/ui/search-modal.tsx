@@ -6,26 +6,12 @@ import { FilterTitles } from 'src/enums'
 import { useSearchContex } from 'src/modules/search-context'
 import { colors } from 'src/theme/colors'
 import { FilterTitleProps, ModalMenuProps } from 'src/types'
-import { HeaderFilter, ModalMenu, Search } from 'src/ui'
+
+import { ModalMenu } from './modal'
+import { ModalHeader } from './modal-header'
+import { Search } from './search'
 
 type Props = ModalMenuProps & FilterTitleProps
-
-const ResultContainer = styled.View`
-  width: 100%;
-  border-color: ${colors.black};
-  border-top-width: 0.5px;
-`
-const Text = styled.Text`
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 22px;
-  color: ${colors.black};
-`
-const TextBox = styled.TouchableOpacity`
-  padding: 10.5px 16px;
-  border-color: ${colors.black};
-  border-bottom-width: 0.5px;
-`
 
 type ResultProps = {
   item: string
@@ -43,7 +29,7 @@ export const SearchModal: FC<Props> = ({ title, ...props }) => {
 
   return (
     <ModalMenu {...props}>
-      <HeaderFilter title={FilterTitles[title]} closeModal={props.closeModal} />
+      <ModalHeader title={FilterTitles[title]} closeModal={props.closeModal} />
       <Search />
       <ResultContainer>
         {results && (
@@ -62,3 +48,20 @@ export const SearchModal: FC<Props> = ({ title, ...props }) => {
     </ModalMenu>
   )
 }
+
+const ResultContainer = styled.View`
+  width: 100%;
+  border-color: ${colors.black};
+  border-top-width: 0.5px;
+`
+const Text = styled.Text`
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 22px;
+  color: ${colors.black};
+`
+const TextBox = styled.TouchableOpacity`
+  padding: 10.5px 16px;
+  border-color: ${colors.black};
+  border-bottom-width: 0.5px;
+`

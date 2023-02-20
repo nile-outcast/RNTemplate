@@ -5,6 +5,13 @@ export type TitleProps = {
   isFiltered?: boolean
 }
 
+export type ModalHeaderProps = TitleProps &
+  Partial<{
+    closeModal: () => void
+    onClean: () => void
+    onApply: () => void
+  }>
+
 export type FilterTitleProps = {
   title: keyof typeof FilterTitles & keyof typeof FilterSubtitles
 }
@@ -21,8 +28,4 @@ export type SearchState = {
   reloader: () => void
 }
 
-export enum Keys {
-  Characters = 'characters',
-  Locations = 'locations',
-  Episodes = 'episodes',
-}
+export type DataKeys = 'characters' | 'locations' | 'episodes'

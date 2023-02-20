@@ -7,13 +7,8 @@ import {
 } from 'src/apollo/character-queries'
 import { FilterTitles } from 'src/enums'
 import { useRootStore } from 'src/store'
-import { Keys, ModalMenuProps } from 'src/types'
-import {
-  FilterCheckboxField,
-  FilterTouchableField,
-  HeaderFilter,
-  ModalMenu,
-} from 'src/ui'
+import { ModalMenuProps } from 'src/types'
+import { FilterCheckboxField, FiltersModal, FilterTouchableField } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
 import { SearchProvider } from '../search-context'
@@ -53,26 +48,23 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
 
   const nameContext = useGetSearchContext(
     names,
-    Keys.Characters,
+    'characters',
     localParams.name,
     useSetValue('name'),
   )
   const speciesContext = useGetSearchContext(
     species,
-    Keys.Characters,
+    'characters',
     localParams.species,
     useSetValue('species'),
   )
 
   return (
-    <ModalMenu {...props}>
-      <HeaderFilter
-        title={FilterTitles.Filter}
-        isFiltered={isFiltered}
-        onClean={onClean}
-        onApply={onApply}
-      />
-
+    <FiltersModal
+      {...props}
+      isFiltered={isFiltered}
+      onApply={onApply}
+      onClean={onClean}>
       <SearchProvider value={nameContext}>
         <FilterTouchableField title={FilterTitles.Name} />
       </SearchProvider>
@@ -92,6 +84,6 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
         value={localParams.gender}
         setValue={useSetValue('gender')}
       />
-    </ModalMenu>
+    </FiltersModal>
   )
 })

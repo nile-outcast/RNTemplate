@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 
 import { FilterTitles, HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { TitleProps } from 'src/types'
+import { ModalHeaderProps, TitleProps } from 'src/types'
 import { BackButton } from 'src/ui'
 
 import { HeaderTitle } from './header-title'
@@ -47,19 +47,14 @@ const ApplyText = styled.Text`
   font-size: 13px;
   line-height: 18px;
 `
-type Props = TitleProps & {
-  closeModal?: () => void
-  onClean?: () => void
-  onApply?: () => void
-}
 
-export const HeaderFilter = ({
+export const ModalHeader = ({
   title,
   isFiltered,
   closeModal,
   onClean,
   onApply,
-}: Props) => (
+}: ModalHeaderProps) => (
   <Container>
     <TextBox>
       {title === FilterTitles.Filter ? (

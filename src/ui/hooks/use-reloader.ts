@@ -1,18 +1,12 @@
 import { useCallback } from 'react'
-import {
-  ApolloQueryResult,
-  FetchMoreQueryOptions,
-  OperationVariables,
-  QueryResult,
-} from '@apollo/client'
+import { QueryResult } from '@apollo/client'
 
-import { Keys } from 'src/types'
+import { DataKeys } from 'src/types'
 
-type FetchMore = (
-  fetchMoreOptions: FetchMoreQueryOptions<OperationVariables>,
-) => Promise<ApolloQueryResult<OperationVariables>>
-
-const reloader = (next: number | undefined, fetchMore: FetchMore) => {
+const reloader = (
+  next: number | undefined,
+  fetchMore: QueryResult['fetchMore'],
+) => {
   if (next) {
     fetchMore({
       variables: {
@@ -22,9 +16,8 @@ const reloader = (next: number | undefined, fetchMore: FetchMore) => {
   }
 }
 
-export const useReloader = (data: QueryResult, key: Keys) => {
-  return useCallback(
+export const useReloader = (data: QueryResult, key: DataKeys) =>
+  useCallback(
     () => reloader(data.data?.[key].info.next, data.fetchMore),
     [data.data, data.fetchMore, key],
   )
-}

@@ -3,7 +3,7 @@ import { FlatList, StyleSheet } from 'react-native'
 import { QueryResult } from '@apollo/client'
 
 import { colors } from 'src/theme/colors'
-import { Keys } from 'src/types'
+import { DataKeys } from 'src/types'
 
 import { renderItems } from '.'
 import { useReloader } from './hooks'
@@ -11,7 +11,7 @@ import { Loader } from './loader'
 
 type Props = {
   data: QueryResult
-  dataKey: Keys
+  dataKey: DataKeys
 }
 
 export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
@@ -19,26 +19,22 @@ export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
 
   const renderItem = renderItems[dataKey]
 
-  return data.loading ? (
-    <Loader />
-  ) : (
+  if (data.loading) return <Loader />
+
+  return (
     <>
-      {data.data && (
-        <>
-          <FlatList
-            contentContainerStyle={styles.contentContainer}
-            data={data.data?.[dataKey].results}
-            renderItem={renderItem}
-            horizontal={false}
-            numColumns={2}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
-            onEndReached={reloader}
-            onEndReachedThreshold={1}
-          />
-          {children}
-        </>
-      )}
+      <FlatList
+        contentContainerStyle={styles.contentContainer}
+        data={data.data?.[dataKey].results}
+        renderItem={renderItem}
+        horizontal={false}
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        onEndReached={reloader}
+        onEndReachedThreshold={1}
+      />
+      {children}
     </>
   )
 }

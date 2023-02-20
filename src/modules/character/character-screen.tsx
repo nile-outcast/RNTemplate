@@ -5,7 +5,6 @@ import { useGetCharacters } from 'src/apollo/character-queries'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation/types'
 import { useRootStore } from 'src/store'
-import { Keys } from 'src/types'
 import { HeaderList, ScreenList } from 'src/ui'
 
 import { CharacterFilters } from './character-filters'
@@ -36,7 +35,7 @@ export const CharacterScreen = observer(() => {
   const closeModal = useCallback(() => setVisible(false), [])
 
   return (
-    <ScreenList data={data} dataKey={Keys.Characters}>
+    <ScreenList data={data} dataKey="characters">
       <CharacterFilters showModal={visible} closeModal={closeModal} />
     </ScreenList>
   )

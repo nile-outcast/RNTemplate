@@ -3,7 +3,6 @@ import React, { useCallback, useLayoutEffect, useState } from 'react'
 import { useGetLocations } from 'src/apollo/location-queries'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation/types'
-import { Keys } from 'src/types'
 import { HeaderList, ScreenList } from 'src/ui'
 
 import { LocationFilters } from './location-filters'
@@ -33,7 +32,7 @@ export const LocationScreen = () => {
   const closeModal = useCallback(() => setVisible(false), [])
 
   return (
-    <ScreenList data={data} dataKey={Keys.Locations}>
+    <ScreenList data={data} dataKey="locations">
       <LocationFilters showModal={visible} closeModal={closeModal} />
     </ScreenList>
   )

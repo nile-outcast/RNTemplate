@@ -6,8 +6,8 @@ import {
   useGetLocationsTypes,
 } from 'src/apollo/location-queries'
 import { FilterTitles } from 'src/enums'
-import { Keys, ModalMenuProps } from 'src/types'
-import { FilterTouchableField, HeaderFilter, ModalMenu } from 'src/ui'
+import { ModalMenuProps } from 'src/types'
+import { FiltersModal, FilterTouchableField } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
 import { SearchProvider } from '../search-context'
@@ -52,34 +52,31 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
 
   const nameContext = useGetSearchContext(
     names,
-    Keys.Locations,
+    'locations',
     localParams.name,
     useSetValue('name'),
   )
 
   const typeContext = useGetSearchContext(
     types,
-    Keys.Locations,
+    'locations',
     localParams.type,
     useSetValue('type'),
   )
 
   const dimensionContext = useGetSearchContext(
     dimensions,
-    Keys.Locations,
+    'locations',
     localParams.dimension,
     useSetValue('dimension'),
   )
 
   return (
-    <ModalMenu {...props}>
-      <HeaderFilter
-        title={FilterTitles.Filter}
-        isFiltered={isFiltered}
-        onClean={onClean}
-        onApply={onApply}
-      />
-
+    <FiltersModal
+      {...props}
+      isFiltered={isFiltered}
+      onApply={onApply}
+      onClean={onClean}>
       <SearchProvider value={nameContext}>
         <FilterTouchableField title={FilterTitles.Name} />
       </SearchProvider>
@@ -91,6 +88,6 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
       <SearchProvider value={dimensionContext}>
         <FilterTouchableField title={FilterTitles.Dimension} />
       </SearchProvider>
-    </ModalMenu>
+    </FiltersModal>
   )
 }

@@ -10,7 +10,7 @@ type Props = {
   character: CoreCharacter
 }
 
-export const CharacterItem = ({ character }: Props) => {
+export const CharacterItem = React.memo(({ character }: Props) => {
   const { navigate } = useNavigation()
 
   const onPress = () =>
@@ -27,7 +27,7 @@ export const CharacterItem = ({ character }: Props) => {
       <Image source={{ uri: character.image }} />
     </ItemContainer>
   )
-}
+})
 
 const Image = styled.Image`
   width: auto;

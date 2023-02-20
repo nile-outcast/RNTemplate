@@ -70,6 +70,7 @@ export const DetailsTitle = ({ image, status, name, species }: Props) => (
         </ImageBox>
       </ImagesContainer>
     ) : null}
+
     <InfoBox>
       <StatusText>{status}</StatusText>
       <NameText>{name}</NameText>
