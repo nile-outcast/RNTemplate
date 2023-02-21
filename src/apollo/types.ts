@@ -48,5 +48,3 @@ export type Episodes = {
   info: CoreInfo
   results: CoreEpisode[]
 }
-
-export type ClientMergeArgs = Characters | Locations | Episodes

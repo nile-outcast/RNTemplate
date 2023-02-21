@@ -2,22 +2,29 @@ import React, { FC } from 'react'
 import {
   ApolloClient,
   ApolloProvider as Provider,
+  FieldFunctionOptions,
   InMemoryCache,
 } from '@apollo/client'
 
-import { ClientMergeArgs } from './types'
+type Result = Record<string, string>
 
 const merge = (
-  existing: ClientMergeArgs | undefined,
-  incoming: ClientMergeArgs,
+  existing: { results: Result[] } | undefined,
+  incoming: { results: Result[] },
+  { readField }: FieldFunctionOptions,
 ) => {
-  if (existing) {
-    return {
-      ...incoming,
-      results: [...existing.results, ...incoming.results],
-    }
-  } else {
-    return incoming
+  const results: Record<string, Result> = {}
+
+  existing?.results.forEach(
+    (result) => (results[`${readField('id', result)}`] = result),
+  )
+  incoming.results.forEach(
+    (result) => (results[`${readField('id', result)}`] = result),
+  )
+
+  return {
+    ...incoming,
+    results: Object.values(results),
   }
 }
 

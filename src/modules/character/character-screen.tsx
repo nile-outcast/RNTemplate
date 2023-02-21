@@ -1,18 +1,15 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
-import { observer } from 'mobx-react'
 
 import { useGetCharacters } from 'src/apollo/character-queries'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation'
-import { useRootStore } from 'src/store'
 import { HeaderList, ScreenList } from 'src/ui'
 
 import { CharacterFilters } from './character-filters'
+import { useCharacterVar } from './character-state'
 
-export const CharacterScreen = observer(() => {
-  const {
-    characterStore: { params, isFiltered },
-  } = useRootStore()
+export const CharacterScreen = () => {
+  const { params, isFiltered } = useCharacterVar()
 
   const { setOptions } = useNavigation()
 
@@ -39,4 +36,4 @@ export const CharacterScreen = observer(() => {
       <CharacterFilters showModal={visible} closeModal={closeModal} />
     </ScreenList>
   )
-})
+}

@@ -38,7 +38,7 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
       params: localParams,
       isFiltered: localIsFiltered,
     })
-  }, [initialState, localIsFiltered, localParams, closeModal])
+  }, [closeModal, initialState, localIsFiltered, localParams])
 
   const useSetValue = (key: keyof typeof localParams) =>
     useCallback(

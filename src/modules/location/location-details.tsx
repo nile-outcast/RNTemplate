@@ -26,7 +26,7 @@ export const LocationDetailsScreen = () => {
         <DetailsTitle name={name} status={type} species={dimension} />
 
         <FlatList
-          ListHeaderComponent={<SectionTitle>Residents</SectionTitle>}
+          style={styles.container}
           contentContainerStyle={styles.contentContainer}
           data={residents}
           renderItem={renderItem}
@@ -34,6 +34,7 @@ export const LocationDetailsScreen = () => {
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
+          ListHeaderComponent={<SectionTitle>Residents</SectionTitle>}
         />
       </>
     )
@@ -51,10 +52,11 @@ const SectionTitle = styled.Text`
 `
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+  },
   contentContainer: {
     paddingHorizontal: 8,
     paddingVertical: 10,
-    backgroundColor: colors.white,
-    minHeight: '100%',
   },
 })

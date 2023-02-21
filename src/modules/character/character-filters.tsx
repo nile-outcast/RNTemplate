@@ -1,24 +1,21 @@
 import React, { FC, useCallback, useState } from 'react'
-import { observer } from 'mobx-react'
 
 import {
   useGetCharactersNames,
   useGetCharactersSpecies,
 } from 'src/apollo/character-queries'
 import { FilterTitles } from 'src/enums'
-import { useRootStore } from 'src/store'
 import { ModalMenuProps } from 'src/types'
 import { FilterCheckboxField, FiltersModal, FilterTouchableField } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
 import { SearchProvider } from '../search-context'
+import { setCharacterVar, useCharacterVar } from './character-state'
 import { CheckboxTitles } from './enums'
 
-export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
+export const CharacterFilters: FC<ModalMenuProps> = (props) => {
   const { closeModal } = props
-  const {
-    characterStore: { initialState, params, isFiltered, setParams },
-  } = useRootStore()
+  const { initialState, params, isFiltered } = useCharacterVar()
 
   const [localParams, setLocaleParams] = useState(params)
   const [localIsFiltered, setLocaleIsFiltered] = useState(isFiltered)
@@ -33,8 +30,12 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
 
   const onApply = useCallback(() => {
     closeModal()
-    setParams(localParams, localIsFiltered)
-  }, [localIsFiltered, localParams, closeModal, setParams])
+    setCharacterVar({
+      initialState,
+      params: localParams,
+      isFiltered: localIsFiltered,
+    })
+  }, [closeModal, initialState, localIsFiltered, localParams])
 
   const useSetValue = (key: keyof typeof localParams) => {
     return useCallback(
@@ -52,6 +53,7 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
     localParams.name,
     useSetValue('name'),
   )
+
   const speciesContext = useGetSearchContext(
     species,
     'characters',
@@ -86,4 +88,4 @@ export const CharacterFilters: FC<ModalMenuProps> = observer((props) => {
       />
     </FiltersModal>
   )
-})
+}

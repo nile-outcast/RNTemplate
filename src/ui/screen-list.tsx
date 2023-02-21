@@ -24,6 +24,7 @@ export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
   return (
     <>
       <FlatList
+        style={styles.container}
         contentContainerStyle={styles.contentContainer}
         data={data.data?.[dataKey].results}
         renderItem={renderItem}
@@ -32,7 +33,9 @@ export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         onEndReached={reloader}
-        onEndReachedThreshold={1}
+        onEndReachedThreshold={1.5}
+        maxToRenderPerBatch={6}
+        windowSize={11}
       />
       {children}
     </>
@@ -40,10 +43,11 @@ export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: colors.white,
+  },
   contentContainer: {
     paddingHorizontal: 8,
     paddingVertical: 10,
-    backgroundColor: colors.white,
-    minHeight: '100%',
   },
 })
