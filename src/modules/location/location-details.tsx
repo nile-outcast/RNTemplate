@@ -3,44 +3,43 @@ import { FlatList, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
 import { useGetFullLocation } from 'src/apollo/location-queries'
-import { useRootStackRoute } from 'src/navigation/types'
+import { Routes, useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import { DetailsTitle, Loader, renderItems } from 'src/ui'
 
 export const LocationDetailsScreen = () => {
   const {
     params: { id },
-  } = useRootStackRoute()
+  } = useRoute<Routes.LocationDetailsScreen>()
 
   const { data, loading } = useGetFullLocation({ id })
 
   const renderItem = renderItems.characters
 
-  return loading ? (
-    <Loader />
-  ) : (
-    <>
-      {data && (
-        <>
-          <DetailsTitle
-            name={data.location.name}
-            status={data.location.type}
-            species={data.location.dimension}
-          />
-          <FlatList
-            ListHeaderComponent={<SectionTitle>Residents</SectionTitle>}
-            contentContainerStyle={styles.contentContainer}
-            data={data.location.residents}
-            renderItem={renderItem}
-            horizontal={false}
-            numColumns={2}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.id}
-          />
-        </>
-      )}
-    </>
-  )
+  if (loading) return <Loader />
+
+  if (data) {
+    const { dimension, name, residents, type } = data.location
+
+    return (
+      <>
+        <DetailsTitle name={name} status={type} species={dimension} />
+
+        <FlatList
+          ListHeaderComponent={<SectionTitle>Residents</SectionTitle>}
+          contentContainerStyle={styles.contentContainer}
+          data={residents}
+          renderItem={renderItem}
+          horizontal={false}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item.id}
+        />
+      </>
+    )
+  }
+
+  return null
 }
 
 const SectionTitle = styled.Text`

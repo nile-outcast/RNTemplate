@@ -5,9 +5,12 @@ import {
   InMemoryCache,
 } from '@apollo/client'
 
-import { Characters, Locations } from './types'
+import { ClientMergeArgs } from './types'
 
-const merge = <T extends Characters | Locations>(existing: T, incoming: T) => {
+const merge = (
+  existing: ClientMergeArgs | undefined,
+  incoming: ClientMergeArgs,
+) => {
   if (existing) {
     return {
       ...incoming,

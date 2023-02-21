@@ -3,8 +3,7 @@ import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { useGetFullCharacter } from 'src/apollo/character-queries'
-import { useRootStackRoute } from 'src/navigation/types'
-import { Routes, useNavigation } from 'src/navigation/types'
+import { Routes, useNavigation, useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import {
   DetailsTitle,
@@ -17,70 +16,64 @@ import {
 export const CharacterDetailsScreen = () => {
   const {
     params: { id },
-  } = useRootStackRoute()
+  } = useRoute<Routes.CharacterDetailsScreen>()
+  const { navigate } = useNavigation()
 
   const { data, loading } = useGetFullCharacter({ id })
 
-  const { navigate } = useNavigation()
+  if (loading) return <Loader />
 
-  return loading ? (
-    <Loader />
-  ) : (
-    <>
-      {data && (
-        <>
-          <DetailsTitle
-            name={data.character.name}
-            status={data.character.status}
-            species={data.character.species}
-            image={data.character.image}
-          />
-          <InfoContainer showsVerticalScrollIndicator={false}>
-            <SectionTitle>Informations</SectionTitle>
-            <SectionBox>
-              <InfoBox>
-                <TextTitle>Gender</TextTitle>
-                <TextSubtitle>{data.character.gender}</TextSubtitle>
+  if (data) {
+    const { episode, gender, location, origin, type } = data.character
+
+    const goToLocationDetailsScreen = () =>
+      navigate(Routes.LocationDetailsScreen, {
+        id: location.id,
+        title: location.name,
+      })
+
+    return (
+      <>
+        <DetailsTitle {...data.character} />
+        <InfoContainer showsVerticalScrollIndicator={false}>
+          <SectionTitle>Informations</SectionTitle>
+          <SectionBox>
+            <InfoBox>
+              <TextTitle>Gender</TextTitle>
+              <TextSubtitle>{gender}</TextSubtitle>
+            </InfoBox>
+
+            <InfoBox>
+              <TextTitle>Origin</TextTitle>
+              <TextSubtitle>{origin.name}</TextSubtitle>
+            </InfoBox>
+
+            <InfoBox>
+              <TextTitle>Type</TextTitle>
+              <TextSubtitle>{type ? type : 'unknown'}</TextSubtitle>
+            </InfoBox>
+
+            <LocationBox onPress={goToLocationDetailsScreen}>
+              <InfoBox isBorder>
+                <TextTitle>Location</TextTitle>
+                <TextSubtitle>{location.name}</TextSubtitle>
               </InfoBox>
+              <ArrowIcon />
+            </LocationBox>
+          </SectionBox>
 
-              <InfoBox>
-                <TextTitle>Origin</TextTitle>
-                <TextSubtitle>{data.character.origin.name}</TextSubtitle>
-              </InfoBox>
+          <SectionTitle>Episodes</SectionTitle>
+          <SectionBox>
+            {episode.map((item, index) => (
+              <EpisodeItem key={index} index={index} episode={item} />
+            ))}
+          </SectionBox>
+        </InfoContainer>
+      </>
+    )
+  }
 
-              <InfoBox>
-                <TextTitle>Type</TextTitle>
-                <TextSubtitle>
-                  {data.character.type ? data.character.type : 'unknown'}
-                </TextSubtitle>
-              </InfoBox>
-
-              <LocationBox
-                onPress={() =>
-                  navigate(Routes.LocationDetailsScreen, {
-                    id: data.character.location.id,
-                    title: data.character.location.name,
-                  })
-                }>
-                <InfoBox isBorder>
-                  <TextTitle>Location</TextTitle>
-                  <TextSubtitle>{data.character.location.name}</TextSubtitle>
-                </InfoBox>
-                <ArrowIcon />
-              </LocationBox>
-            </SectionBox>
-
-            <SectionTitle>Episodes</SectionTitle>
-            <SectionBox>
-              {data.character.episode.map((item, index) => (
-                <EpisodeItem key={index} index={index} episode={item} />
-              ))}
-            </SectionBox>
-          </InfoContainer>
-        </>
-      )}
-    </>
-  )
+  return null
 }
 
 const InfoContainer = styled.ScrollView`

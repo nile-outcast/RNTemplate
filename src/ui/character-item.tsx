@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/native'
 
 import { CoreCharacter } from 'src/apollo/types'
-import { Routes, useNavigation } from 'src/navigation/types'
+import { Routes, useNavigation } from 'src/navigation'
 
 import { ItemContainer } from './item-container'
 

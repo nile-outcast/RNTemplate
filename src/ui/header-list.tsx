@@ -8,6 +8,26 @@ import { TitleProps } from 'src/types'
 
 import { TextTitle } from '.'
 
+type Props = TitleProps & {
+  openFilters: () => void
+}
+
+export const HeaderList = ({ isFiltered, openFilters, title }: Props) => (
+  <Container>
+    <FilterContainer>
+      {isFiltered && <FilterIndicatorIcon />}
+
+      <FilterButton onPress={openFilters}>
+        <TextTitle style={{ color: colors.purple }}>
+          {HeaderTitles.Filter}
+        </TextTitle>
+      </FilterButton>
+    </FilterContainer>
+
+    <HeaderTitle>{title}</HeaderTitle>
+  </Container>
+)
+
 const Container = styled.View`
   padding: 20px 16px 10px 16px;
   background: ${colors.barsLightGray};
@@ -27,21 +47,3 @@ const HeaderTitle = styled.Text`
   line-height: 41px;
   color: ${colors.black};
 `
-
-type Props = TitleProps & {
-  openFilters: () => void
-}
-
-export const HeaderList = ({ title, openFilters, isFiltered }: Props) => (
-  <Container>
-    <FilterContainer>
-      {isFiltered && <FilterIndicatorIcon />}
-      <FilterButton onPress={openFilters}>
-        <TextTitle style={{ color: colors.purple }}>
-          {HeaderTitles.Filter}
-        </TextTitle>
-      </FilterButton>
-    </FilterContainer>
-    <HeaderTitle>{title}</HeaderTitle>
-  </Container>
-)

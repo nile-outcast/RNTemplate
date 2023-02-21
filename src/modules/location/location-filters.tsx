@@ -40,15 +40,14 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
     })
   }, [initialState, localIsFiltered, localParams, closeModal])
 
-  const useSetValue = (key: keyof typeof localParams) => {
-    return useCallback(
+  const useSetValue = (key: keyof typeof localParams) =>
+    useCallback(
       (value: string) => {
         setLocaleIsFiltered(true)
         setLocaleParams((prev) => ({ ...prev, [key]: value }))
       },
       [key],
     )
-  }
 
   const nameContext = useGetSearchContext(
     names,

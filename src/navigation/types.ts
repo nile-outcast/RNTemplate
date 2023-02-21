@@ -1,4 +1,4 @@
-import { useRoute } from '@react-navigation/native'
+import { useRoute as useNaiveRoute } from '@react-navigation/native'
 import {
   NavigationProp,
   useNavigation as useNativeNavigation,
@@ -21,18 +21,21 @@ type Params = {
 }
 
 export type RootStackParams = {
-  [Routes.MainNavigator]: undefined
-  [Routes.CharacterDetailsScreen]: Params
-  [Routes.EpisodeDetailsScreen]: Params
-  [Routes.LocationDetailsScreen]: Params
+  [key in Routes]: key extends
+    | Routes.CharacterDetailsScreen
+    | Routes.EpisodeDetailsScreen
+    | Routes.LocationDetailsScreen
+    ? Params
+    : undefined
 }
 
-export type RootStackOptions = NativeStackScreenProps<
+export type RootStackOptions<T extends Routes> = NativeStackScreenProps<
   RootStackParams,
-  keyof Omit<RootStackParams, Routes.MainNavigator>
+  T
 >
 
-export const useRootStackRoute = () => useRoute<RootStackOptions['route']>()
+export const useRoute = <T extends Routes = Routes>() =>
+  useNaiveRoute<RootStackOptions<T>['route']>()
 
 export const useNavigation = () =>
-  useNativeNavigation<NavigationProp<Record<string, unknown>, Routes>>()
+  useNativeNavigation<NavigationProp<RootStackParams, Routes>>()

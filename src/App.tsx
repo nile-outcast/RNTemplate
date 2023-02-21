@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 
 import { ApolloProvider } from 'src/apollo/client'
 import { AlertProvider } from 'src/modules/alert-context'
-import { RootNavigation } from 'src/navigation/root'
+import { RootNavigation } from 'src/navigation'
 import { RootStoreProvider } from 'src/store'
 
 LogBox.ignoreLogs(['new NativeEventEmitter'])

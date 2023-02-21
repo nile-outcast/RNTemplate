@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { CoreLocation } from 'src/apollo/types'
-import { Routes, useNavigation } from 'src/navigation/types'
+import { Routes, useNavigation } from 'src/navigation'
 
 import { ItemContainer } from './item-container'
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
 import { FilterTitles } from 'src/enums'
@@ -31,29 +31,22 @@ export const SearchModal: FC<Props> = ({ title, ...props }) => {
     <ModalMenu {...props}>
       <ModalHeader title={FilterTitles[title]} closeModal={props.closeModal} />
       <Search />
-      <ResultContainer>
-        {results && (
-          <FlatList
-            data={results}
-            renderItem={({ item }) => (
-              <Result item={item} setValue={setValue} />
-            )}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item}
-            onEndReached={reloader}
-            onEndReachedThreshold={1}
-          />
-        )}
-      </ResultContainer>
+      {results && (
+        <FlatList
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
+          data={results}
+          renderItem={({ item }) => <Result item={item} setValue={setValue} />}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item) => item}
+          onEndReached={reloader}
+          onEndReachedThreshold={1}
+        />
+      )}
     </ModalMenu>
   )
 }
 
-const ResultContainer = styled.View`
-  width: 100%;
-  border-color: ${colors.black};
-  border-top-width: 0.5px;
-`
 const Text = styled.Text`
   font-weight: 400;
   font-size: 17px;
@@ -65,3 +58,14 @@ const TextBox = styled.TouchableOpacity`
   border-color: ${colors.black};
   border-bottom-width: 0.5px;
 `
+
+const styles = StyleSheet.create({
+  container: {
+    borderColor: colors.black,
+    borderTopWidth: 0.5,
+    width: '100%',
+  },
+  contentContainer: {
+    paddingBottom: 20,
+  },
+})

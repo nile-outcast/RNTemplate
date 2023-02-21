@@ -3,7 +3,7 @@ import { observer } from 'mobx-react'
 
 import { useGetCharacters } from 'src/apollo/character-queries'
 import { ScreenTitles } from 'src/enums'
-import { useNavigation } from 'src/navigation/types'
+import { useNavigation } from 'src/navigation'
 import { useRootStore } from 'src/store'
 import { HeaderList, ScreenList } from 'src/ui'
 
@@ -13,8 +13,6 @@ export const CharacterScreen = observer(() => {
   const {
     characterStore: { params, isFiltered },
   } = useRootStore()
-
-  const data = useGetCharacters(params)
 
   const { setOptions } = useNavigation()
 
@@ -31,6 +29,8 @@ export const CharacterScreen = observer(() => {
       ),
     })
   }, [isFiltered, setOptions])
+
+  const data = useGetCharacters(params)
 
   const closeModal = useCallback(() => setVisible(false), [])
 

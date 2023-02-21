@@ -6,7 +6,7 @@ import styled from 'styled-components/native'
 import { useAlertContext } from 'src/modules/alert-context'
 import { CharacterDetailsScreen } from 'src/modules/character'
 import { LocationDetailsScreen } from 'src/modules/location'
-import { RootStackOptions, RootStackParams, Routes } from 'src/navigation/types'
+import { RootStackOptions, RootStackParams, Routes } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import { Alert } from 'src/ui/alert'
 import { HeaderDetails } from 'src/ui/header-details'
@@ -18,7 +18,13 @@ const Container = styled.SafeAreaView`
   background-color: ${colors.barsLightGray};
 `
 
-const option = ({ route }: RootStackOptions) => ({
+const option = ({
+  route,
+}: RootStackOptions<
+  | Routes.CharacterDetailsScreen
+  | Routes.LocationDetailsScreen
+  | Routes.EpisodeDetailsScreen
+>) => ({
   header: () => <HeaderDetails title={route.params.title} />,
 })
 
