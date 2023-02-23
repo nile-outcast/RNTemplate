@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
-import { useGetFullLocation } from 'src/apollo/location-queries'
+import { useGetFullLocation } from 'src/apollo/location'
 import { Routes, useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import { DetailsTitle, Loader, renderItems } from 'src/ui'

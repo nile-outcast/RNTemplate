@@ -10,12 +10,6 @@ export type CoreCharacter = {
   image: string
 }
 
-export type GetCharactersVars = Omit<CoreCharacter, 'id' | 'image'> & {
-  page?: number
-  species: string
-  gender: string
-}
-
 export type CoreEpisode = {
   id: string
   name: string
@@ -29,14 +23,14 @@ export type CoreLocation = {
   type: string
 }
 
-export type GetLocationsVars = Omit<CoreLocation, 'id'> & {
-  page?: number
-  dimension: string
-}
-
 export type Characters = {
   info: CoreInfo
   results: CoreCharacter[]
+}
+
+export type Episodes = {
+  info: CoreInfo
+  results: CoreEpisode[]
 }
 
 export type Locations = {
@@ -44,7 +38,13 @@ export type Locations = {
   results: CoreLocation[]
 }
 
-export type Episodes = {
-  info: CoreInfo
-  results: CoreEpisode[]
+export type GetCharactersVars = Omit<CoreCharacter, 'id' | 'image'> & {
+  page?: number
+  species: string
+  gender: string
+}
+
+export type GetLocationsVars = Omit<CoreLocation, 'id'> & {
+  page?: number
+  dimension: string
 }

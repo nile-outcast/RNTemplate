@@ -3,7 +3,7 @@ import React, { FC, useCallback, useState } from 'react'
 import {
   useGetCharactersNames,
   useGetCharactersSpecies,
-} from 'src/apollo/character-queries'
+} from 'src/apollo/character'
 import { FilterTitles } from 'src/enums'
 import { ModalMenuProps } from 'src/types'
 import { FilterCheckboxField, FiltersModal, FilterTouchableField } from 'src/ui'

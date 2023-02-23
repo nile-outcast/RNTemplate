@@ -4,4 +4,4 @@ export {
   useGetLocationsDimensions,
   useGetLocationsNames,
   useGetLocationsTypes,
-} from './location-hooks'
+} from './hooks'

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet } from 'react-native'
 import { QueryResult } from '@apollo/client'
 
 import { colors } from 'src/theme/colors'
@@ -36,6 +36,11 @@ export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
         onEndReachedThreshold={1.5}
         maxToRenderPerBatch={6}
         windowSize={11}
+        ListFooterComponent={
+          data.data?.[dataKey].info.next && (
+            <ActivityIndicator size="large" color={colors.black} />
+          )
+        }
       />
       {children}
     </>

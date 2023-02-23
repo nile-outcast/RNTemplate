@@ -1,14 +1,16 @@
 import { useMemo } from 'react'
 
-export const useGetFlatValues = (results: { [key: string]: string }[]) =>
+export const useGetFlatValues = (
+  results: { [key: string]: string }[],
+  key: string,
+) =>
   useMemo(
     () =>
       [
-        ...results?.reduce(
-          (prev: Set<string>, result) =>
-            prev.add(result[Object.keys(result)[1]]),
+        ...results.reduce(
+          (prev, result) => prev.add(result[key]),
           new Set<string>([]),
         ),
       ].sort(),
-    [results],
+    [key, results],
   )

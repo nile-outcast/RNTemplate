@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 
-import { useGetCharacters } from 'src/apollo/character-queries'
+import { useGetCharacters } from 'src/apollo/character'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation'
 import { HeaderList, ScreenList } from 'src/ui'

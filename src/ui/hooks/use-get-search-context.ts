@@ -9,7 +9,10 @@ export const useGetSearchContext = (
   value: string,
   setValue: (value: string) => void,
 ): SearchState => ({
-  results: useGetFlatValues(data.data?.[dataKey].results ?? []),
+  results: useGetFlatValues(
+    data.data?.[dataKey].results ?? [],
+    Object.keys(data.variables ?? {})[0],
+  ),
   value,
   reloader: useReloader(data, dataKey),
   setValue,

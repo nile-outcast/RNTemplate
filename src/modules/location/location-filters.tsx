@@ -4,7 +4,7 @@ import {
   useGetLocationsDimensions,
   useGetLocationsNames,
   useGetLocationsTypes,
-} from 'src/apollo/location-queries'
+} from 'src/apollo/location'
 import { FilterTitles } from 'src/enums'
 import { ModalMenuProps } from 'src/types'
 import { FiltersModal, FilterTouchableField } from 'src/ui'

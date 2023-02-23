@@ -2,7 +2,7 @@ import React from 'react'
 import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-import { useGetFullCharacter } from 'src/apollo/character-queries'
+import { useGetFullCharacter } from 'src/apollo/character'
 import { Routes, useNavigation, useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import {

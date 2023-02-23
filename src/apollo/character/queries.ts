@@ -44,6 +44,7 @@ export const GET_CHARACTERS_NAMES = gql`
         ...CoreInfoFields
       }
       results {
+        id
         name
       }
     }
@@ -58,6 +59,7 @@ export const GET_CHARACTERS_SPECIES = gql`
         ...CoreInfoFields
       }
       results {
+        id
         species
       }
     }

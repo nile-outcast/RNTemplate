@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 
-import { useGetLocations } from 'src/apollo/location-queries'
+import { useGetLocations } from 'src/apollo/location'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation'
 import { HeaderList, ScreenList } from 'src/ui'

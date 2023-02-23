@@ -14,7 +14,7 @@ import {
   GET_LOCATIONS_DIMENSIONS,
   GET_LOCATIONS_NAMES,
   GET_LOCATIONS_TYPES,
-} from './location-queries'
+} from './queries'
 
 type GetLocationsData = {
   locations: Locations

@@ -14,7 +14,7 @@ import {
   GET_CHARACTERS_NAMES,
   GET_CHARACTERS_SPECIES,
   GET_FULL_CHARACTER,
-} from './character-queries'
+} from './queries'
 
 type GetCharactersData = {
   characters: Characters

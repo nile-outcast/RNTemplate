@@ -3,4 +3,4 @@ export {
   useGetFullCharacter,
   useGetCharactersNames,
   useGetCharactersSpecies,
-} from './character-hooks'
+} from './hooks'

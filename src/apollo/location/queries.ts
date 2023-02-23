@@ -36,6 +36,7 @@ export const GET_LOCATIONS_NAMES = gql`
         ...CoreInfoFields
       }
       results {
+        id
         name
       }
     }
@@ -50,6 +51,7 @@ export const GET_LOCATIONS_TYPES = gql`
         ...CoreInfoFields
       }
       results {
+        id
         type
       }
     }
@@ -64,6 +66,7 @@ export const GET_LOCATIONS_DIMENSIONS = gql`
         ...CoreInfoFields
       }
       results {
+        id
         dimension
       }
     }
