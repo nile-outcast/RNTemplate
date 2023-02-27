@@ -1,5 +1,7 @@
-import React, { FC } from 'react'
-import { Dimensions, TouchableOpacityProps } from 'react-native'
+import type { FC } from 'react'
+import React from 'react'
+import type { TouchableOpacityProps } from 'react-native'
+import { Dimensions } from 'react-native'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'

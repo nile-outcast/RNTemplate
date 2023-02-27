@@ -9,6 +9,7 @@
     "pods": "cd ./ios && pod install && cd ..",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --fix -c .eslintrc.js",
     "build:ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "clear:watch": "watchman watch-del '/Users/nazil/Codes/MOBILE/RNTemplate' && watchman watch-project '/Users/nazil/Codes/MOBILE/RNTemplate'",
     "codegen": "graphql-codegen --config src/apollo/codegen.ts",

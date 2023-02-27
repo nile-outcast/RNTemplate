@@ -1,8 +1,9 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
+import type { FieldFunctionOptions } from '@apollo/client'
 import {
   ApolloClient,
   ApolloProvider as Provider,
-  FieldFunctionOptions,
   InMemoryCache,
 } from '@apollo/client'
 

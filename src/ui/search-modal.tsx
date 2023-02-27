@@ -1,11 +1,12 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
 import { FilterTitles } from 'src/enums'
 import { useSearchContex } from 'src/modules/search-context'
 import { colors } from 'src/theme/colors'
-import { FilterTitleProps, ModalMenuProps } from 'src/types'
+import type { FilterTitleProps, ModalMenuProps } from 'src/types'
 
 import { ModalMenu } from './modal'
 import { ModalHeader } from './modal-header'
@@ -31,18 +32,16 @@ export const SearchModal: FC<Props> = ({ title, ...props }) => {
     <ModalMenu {...props}>
       <ModalHeader title={FilterTitles[title]} closeModal={props.closeModal} />
       <Search />
-      {results && (
-        <FlatList
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-          data={results}
-          renderItem={({ item }) => <Result item={item} setValue={setValue} />}
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item) => item}
-          onEndReached={reloader}
-          onEndReachedThreshold={1}
-        />
-      )}
+      <FlatList
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+        data={results}
+        renderItem={({ item }) => <Result item={item} setValue={setValue} />}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item}
+        onEndReached={reloader}
+        onEndReachedThreshold={1}
+      />
     </ModalMenu>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import { CoreCharacterFields } from 'src/apollo/fragments.generated'
+import type { CoreCharacterFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
 
 import { ItemContainer } from './item-container'

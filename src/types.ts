@@ -1,4 +1,4 @@
-import { FilterSubtitles, FilterTitles } from './enums'
+import type { FilterSubtitles, FilterTitles } from './enums'
 
 export type TitleProps = {
   title: string
@@ -22,7 +22,7 @@ export type ModalMenuProps = {
 }
 
 export type SearchState = {
-  results: string[] | undefined
+  results: string[]
   value: string
   setValue: (value: string) => void
   reloader: () => void

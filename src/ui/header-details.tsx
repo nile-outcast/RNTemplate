@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 
 import { useNavigation } from 'src/navigation'
 import { colors } from 'src/theme/colors'
-import { TitleProps } from 'src/types'
+import type { TitleProps } from 'src/types'
 import { BackButton, HeaderTitle } from 'src/ui'
 
 export const HeaderDetails = ({ title }: TitleProps) => {

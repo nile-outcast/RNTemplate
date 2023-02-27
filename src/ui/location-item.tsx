@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { CoreLocationFields } from 'src/apollo/fragments.generated'
+import type { CoreLocationFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
 
 import { ItemContainer } from './item-container'

@@ -1,6 +1,6 @@
 import { makeVar, useReactiveVar } from '@apollo/client'
 
-import { GetCharactersVariables } from './character-queries.generated'
+import type { GetCharactersVariables } from './character-queries.generated'
 
 const characterInitVar: GetCharactersVariables = {
   name: '',

@@ -2,7 +2,7 @@ import React from 'react'
 import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-import { CoreEpisodeFields } from 'src/apollo/fragments.generated'
+import type { CoreEpisodeFields } from 'src/apollo/fragments.generated'
 import { colors } from 'src/theme/colors'
 
 import { TextSubtitle } from './text-subtitle'

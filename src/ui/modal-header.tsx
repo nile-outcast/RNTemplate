@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 
 import { FilterTitles, HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { ModalHeaderProps, TitleProps } from 'src/types'
+import type { ModalHeaderProps } from 'src/types'
 import { BackButton } from 'src/ui'
 
 import { HeaderTitle } from './header-title'

@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 import Modal from 'react-native-modal'
 import { ModalLine } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
 import { colors } from 'src/theme/colors'
-import { ModalMenuProps } from 'src/types'
+import type { ModalMenuProps } from 'src/types'
 
 export const ModalMenu: FC<ModalMenuProps> = ({
   showModal,

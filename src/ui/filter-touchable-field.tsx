@@ -5,7 +5,7 @@ import styled from 'styled-components/native'
 import { FilterSubtitles, FilterTitles } from 'src/enums'
 import { useSearchContex } from 'src/modules/search-context'
 import { colors } from 'src/theme/colors'
-import { FilterTitleProps } from 'src/types'
+import type { FilterTitleProps } from 'src/types'
 import { TextSubtitle, TextTitle } from 'src/ui'
 
 import { SearchModal } from './search-modal'

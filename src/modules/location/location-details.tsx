@@ -2,7 +2,8 @@ import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
-import { Routes, useRoute } from 'src/navigation'
+import type { Routes } from 'src/navigation'
+import { useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import { DetailsTitle, HeaderTitle, Loader, renderItems } from 'src/ui'
 
