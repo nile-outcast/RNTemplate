@@ -1,19 +1,26 @@
 import React from 'react'
 
-import { CoreCharacter, CoreLocation } from 'src/apollo/types'
+import {
+  CoreCharacterFields,
+  CoreLocationFields,
+} from 'src/apollo/fragments.generated'
 import { DataKeys } from 'src/types'
 
 import { CharacterItem } from './character-item'
 import { LocationItem } from './location-item'
 
-type ItemType = CoreCharacter | CoreLocation
+type ItemType = CoreCharacterFields | CoreLocationFields
 
 export const renderItems: Record<
   DataKeys,
   (props: { item: ItemType }) => JSX.Element
 > = {
-  characters: ({ item }) => <CharacterItem character={item as CoreCharacter} />,
-  locations: ({ item }) => <LocationItem location={item as CoreLocation} />,
+  characters: ({ item }) => (
+    <CharacterItem character={item as CoreCharacterFields} />
+  ),
+  locations: ({ item }) => (
+    <LocationItem location={item as CoreLocationFields} />
+  ),
   episodes: () => <></>,
 }
 

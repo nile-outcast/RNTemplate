@@ -1,11 +1,11 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 
-import { useGetCharacters } from 'src/apollo/character'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation'
 import { HeaderList, ScreenList } from 'src/ui'
 
 import { CharacterFilters } from './character-filters'
+import { useGetCharacters } from './character-queries.generated'
 import { useCharacterVar } from './character-state'
 
 export const CharacterScreen = () => {
@@ -27,7 +27,7 @@ export const CharacterScreen = () => {
     })
   }, [isFiltered, setOptions])
 
-  const data = useGetCharacters(params)
+  const data = useGetCharacters({ variables: params })
 
   const closeModal = useCallback(() => setVisible(false), [])
 

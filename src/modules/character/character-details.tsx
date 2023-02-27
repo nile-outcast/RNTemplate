@@ -2,7 +2,6 @@ import React from 'react'
 import { ArrowIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 
-import { useGetFullCharacter } from 'src/apollo/character'
 import { Routes, useNavigation, useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
 import {
@@ -13,13 +12,15 @@ import {
   TextTitle,
 } from 'src/ui'
 
+import { useGetFullCharacter } from './character-queries.generated'
+
 export const CharacterDetailsScreen = () => {
   const {
     params: { id },
   } = useRoute<Routes.CharacterDetailsScreen>()
   const { navigate } = useNavigation()
 
-  const { data, loading } = useGetFullCharacter({ id })
+  const { data, loading } = useGetFullCharacter({ variables: { id } })
 
   if (loading) return <Loader />
 

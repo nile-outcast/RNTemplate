@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-import { CoreCharacter } from 'src/apollo/types'
+import { CoreCharacterFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
 
 import { ItemContainer } from './item-container'
 
 type Props = {
-  character: CoreCharacter
+  character: CoreCharacterFields
 }
 
 export const CharacterItem = React.memo(({ character }: Props) => {
