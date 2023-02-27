@@ -1,11 +1,11 @@
 import React, { useCallback, useLayoutEffect, useState } from 'react'
 
-import { useGetLocations } from 'src/apollo/location'
 import { ScreenTitles } from 'src/enums'
 import { useNavigation } from 'src/navigation'
 import { HeaderList, ScreenList } from 'src/ui'
 
 import { LocationFilters } from './location-filters'
+import { useGetLocations } from './location-queries.generated'
 import { useLocationVar } from './location-state'
 
 export const LocationScreen = () => {
@@ -27,7 +27,7 @@ export const LocationScreen = () => {
     })
   }, [isFiltered, setOptions])
 
-  const data = useGetLocations(params)
+  const data = useGetLocations({ variables: params })
 
   const closeModal = useCallback(() => setVisible(false), [])
 

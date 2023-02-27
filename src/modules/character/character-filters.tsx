@@ -1,15 +1,16 @@
-import React, { FC, useCallback, useState } from 'react'
+import type { FC } from 'react'
+import React, { useCallback, useState } from 'react'
 
-import {
-  useGetCharactersNames,
-  useGetCharactersSpecies,
-} from 'src/apollo/character'
 import { FilterTitles } from 'src/enums'
-import { ModalMenuProps } from 'src/types'
+import type { ModalMenuProps } from 'src/types'
 import { FilterCheckboxField, FiltersModal, FilterTouchableField } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
 import { SearchProvider } from '../search-context'
+import {
+  useGetCharactersNames,
+  useGetCharactersSpecies,
+} from './character-queries.generated'
 import { setCharacterVar, useCharacterVar } from './character-state'
 import { CheckboxTitles } from './enums'
 
@@ -20,8 +21,10 @@ export const CharacterFilters: FC<ModalMenuProps> = (props) => {
   const [localParams, setLocaleParams] = useState(params)
   const [localIsFiltered, setLocaleIsFiltered] = useState(isFiltered)
 
-  const names = useGetCharactersNames({ name: localParams.name })
-  const species = useGetCharactersSpecies({ species: localParams.species })
+  const names = useGetCharactersNames({ variables: { name: localParams.name } })
+  const species = useGetCharactersSpecies({
+    variables: { species: localParams.species },
+  })
 
   const onClean = useCallback(() => {
     setLocaleIsFiltered(false)

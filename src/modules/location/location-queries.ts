@@ -11,9 +11,9 @@ export const GET_LOCATIONS = gql`
   ${CORE_INFO_FIELDS}
   query GetLocations(
     $page: Int
-    $name: String
-    $type: String
-    $dimension: String
+    $name: String!
+    $type: String!
+    $dimension: String!
   ) {
     locations(
       page: $page
@@ -30,7 +30,7 @@ export const GET_LOCATIONS = gql`
 `
 export const GET_LOCATIONS_NAMES = gql`
   ${CORE_INFO_FIELDS}
-  query GetLocationsNames($page: Int, $name: String) {
+  query GetLocationsNames($page: Int, $name: String!) {
     locations(page: $page, filter: { name: $name }) {
       info {
         ...CoreInfoFields
@@ -45,7 +45,7 @@ export const GET_LOCATIONS_NAMES = gql`
 
 export const GET_LOCATIONS_TYPES = gql`
   ${CORE_INFO_FIELDS}
-  query GetLocationsTypes($page: Int, $type: String) {
+  query GetLocationsTypes($page: Int, $type: String!) {
     locations(page: $page, filter: { type: $type }) {
       info {
         ...CoreInfoFields
@@ -60,7 +60,7 @@ export const GET_LOCATIONS_TYPES = gql`
 
 export const GET_LOCATIONS_DIMENSIONS = gql`
   ${CORE_INFO_FIELDS}
-  query GetLocationsDimensions($page: Int, $dimension: String) {
+  query GetLocationsDimensions($page: Int, $dimension: String!) {
     locations(page: $page, filter: { dimension: $dimension }) {
       info {
         ...CoreInfoFields

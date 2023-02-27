@@ -10,7 +10,9 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "build:ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
-    "clear:watch": "watchman watch-del '/Users/nazil/Codes/MOBILE/RNTemplate' && watchman watch-project '/Users/nazil/Codes/MOBILE/RNTemplate'"
+    "clear:watch": "watchman watch-del '/Users/nazil/Codes/MOBILE/RNTemplate' && watchman watch-project '/Users/nazil/Codes/MOBILE/RNTemplate'",
+    "codegen": "graphql-codegen --config src/apollo/codegen.ts",
+    "codegen:watch": "graphql-codegen --watch --config src/apollo/codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "3.4.17",
@@ -31,6 +33,11 @@
   "devDependencies": {
     "@babel/core": "7.12.9",
     "@babel/runtime": "7.12.5",
+    "@graphql-codegen/cli": "3.2.1",
+    "@graphql-codegen/near-operation-file-preset": "2.5.0",
+    "@graphql-codegen/typescript": "3.0.1",
+    "@graphql-codegen/typescript-operations": "3.0.1",
+    "@graphql-codegen/typescript-react-apollo": "3.3.7",
     "@react-native-community/eslint-config": "2.0.0",
     "@types/jest": "26.0.23",
     "@types/react-native": "0.65.0",

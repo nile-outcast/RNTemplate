@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { CoreLocation } from 'src/apollo/types'
+import { CoreLocationFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
 
 import { ItemContainer } from './item-container'
 
 type Props = {
-  location: CoreLocation
+  location: CoreLocationFields
 }
 
 export const LocationItem = React.memo(({ location }: Props) => {

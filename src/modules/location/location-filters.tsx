@@ -1,16 +1,16 @@
 import React, { FC, useCallback, useState } from 'react'
 
-import {
-  useGetLocationsDimensions,
-  useGetLocationsNames,
-  useGetLocationsTypes,
-} from 'src/apollo/location'
 import { FilterTitles } from 'src/enums'
 import { ModalMenuProps } from 'src/types'
 import { FiltersModal, FilterTouchableField } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 
 import { SearchProvider } from '../search-context'
+import {
+  useGetLocationsDimensions,
+  useGetLocationsNames,
+  useGetLocationsTypes,
+} from './location-queries.generated'
 import { setLocationVar, useLocationVar } from './location-state'
 
 export const LocationFilters: FC<ModalMenuProps> = (props) => {
@@ -20,10 +20,10 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
   const [localParams, setLocaleParams] = useState(params)
   const [localIsFiltered, setLocaleIsFiltered] = useState(isFiltered)
 
-  const names = useGetLocationsNames({ name: localParams.name })
-  const types = useGetLocationsTypes({ type: localParams.type })
+  const names = useGetLocationsNames({ variables: { name: localParams.name } })
+  const types = useGetLocationsTypes({ variables: { type: localParams.type } })
   const dimensions = useGetLocationsDimensions({
-    dimension: localParams.dimension,
+    variables: { dimension: localParams.dimension },
   })
 
   const onClean = useCallback(() => {

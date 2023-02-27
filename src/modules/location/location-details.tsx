@@ -2,17 +2,18 @@ import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
-import { useGetFullLocation } from 'src/apollo/location'
 import { Routes, useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
-import { DetailsTitle, Loader, renderItems } from 'src/ui'
+import { DetailsTitle, HeaderTitle, Loader, renderItems } from 'src/ui'
+
+import { useGetFullLocation } from './location-queries.generated'
 
 export const LocationDetailsScreen = () => {
   const {
     params: { id },
   } = useRoute<Routes.LocationDetailsScreen>()
 
-  const { data, loading } = useGetFullLocation({ id })
+  const { data, loading } = useGetFullLocation({ variables: { id } })
 
   const renderItem = renderItems.characters
 
@@ -34,7 +35,10 @@ export const LocationDetailsScreen = () => {
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
-          ListHeaderComponent={<SectionTitle>Residents</SectionTitle>}
+          ListHeaderComponent={
+            residents.length ? <SectionTitle>Residents</SectionTitle> : null
+          }
+          ListEmptyComponent={<HeaderTitle>No Residents</HeaderTitle>}
         />
       </>
     )
