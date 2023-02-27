@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Voice, { SpeechResultsEvent } from '@react-native-voice/voice'
+import type { SpeechResultsEvent } from '@react-native-voice/voice'
+import Voice from '@react-native-voice/voice'
 import { ActionIcon, SearchIcon } from 'assets/images/icons'
 import styled from 'styled-components/native'
 

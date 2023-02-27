@@ -1,10 +1,10 @@
 import React from 'react'
 
-import {
+import type {
   CoreCharacterFields,
   CoreLocationFields,
 } from 'src/apollo/fragments.generated'
-import { DataKeys } from 'src/types'
+import type { DataKeys } from 'src/types'
 
 import { CharacterItem } from './character-item'
 import { LocationItem } from './location-item'

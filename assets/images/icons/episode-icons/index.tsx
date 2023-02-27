@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconsProps } from 'assets/images/icons/types'
+import type { IconsProps } from 'assets/images/icons/types'
 
 import { EpisodeActiveIcon } from './episode-active-icon'
 import { EpisodeInactiveIcon } from './episode-inactive-icon'

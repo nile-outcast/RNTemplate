@@ -8,7 +8,7 @@ export const useGetFlatValues = (
     () =>
       [
         ...results.reduce(
-          (prev, result) => prev.add(result[key]),
+          (prev, result) => (result[key] ? prev.add(result[key]) : prev),
           new Set<string>([]),
         ),
       ].sort(),

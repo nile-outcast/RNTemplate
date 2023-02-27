@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 
 import { HeaderTitles } from 'src/enums'
 import { colors } from 'src/theme/colors'
-import { TitleProps } from 'src/types'
+import type { TitleProps } from 'src/types'
 
 import { TextTitle } from '.'
 

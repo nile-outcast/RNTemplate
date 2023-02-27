@@ -1,9 +1,7 @@
+import type { NavigationProp } from '@react-navigation/native'
 import { useRoute as useNaiveRoute } from '@react-navigation/native'
-import {
-  NavigationProp,
-  useNavigation as useNativeNavigation,
-} from '@react-navigation/native'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useNavigation as useNativeNavigation } from '@react-navigation/native'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 
 export enum Routes {
   MainNavigator = 'MainNavigator',

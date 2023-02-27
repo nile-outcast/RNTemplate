@@ -1,6 +1,6 @@
 import { makeVar, useReactiveVar } from '@apollo/client'
 
-import { GetLocationsVariables } from './location-queries.generated'
+import type { GetLocationsVariables } from './location-queries.generated'
 
 const locationInitVar: GetLocationsVariables = {
   name: '',

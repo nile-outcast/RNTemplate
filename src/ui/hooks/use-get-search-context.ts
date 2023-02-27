@@ -1,6 +1,6 @@
-import { QueryResult } from '@apollo/client'
+import type { QueryResult } from '@apollo/client'
 
-import { DataKeys, SearchState } from 'src/types'
+import type { DataKeys, SearchState } from 'src/types'
 import { useGetFlatValues, useReloader } from 'src/ui/hooks'
 
 export const useGetSearchContext = (

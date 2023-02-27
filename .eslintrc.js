@@ -108,5 +108,6 @@ module.exports = {
     // ts
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-shadow': ['error'],
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
 }

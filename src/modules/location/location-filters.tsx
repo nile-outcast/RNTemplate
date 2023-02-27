@@ -1,7 +1,8 @@
-import React, { FC, useCallback, useState } from 'react'
+import type { FC } from 'react'
+import React, { useCallback, useState } from 'react'
 
 import { FilterTitles } from 'src/enums'
-import { ModalMenuProps } from 'src/types'
+import type { ModalMenuProps } from 'src/types'
 import { FiltersModal, FilterTouchableField } from 'src/ui'
 import { useGetSearchContext } from 'src/ui/hooks'
 

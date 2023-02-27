@@ -1,7 +1,8 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 
 import { FilterTitles } from 'src/enums'
-import { ModalHeaderProps, ModalMenuProps } from 'src/types'
+import type { ModalHeaderProps, ModalMenuProps } from 'src/types'
 
 import { ModalMenu } from './modal'
 import { ModalHeader } from './modal-header'

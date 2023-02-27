@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react'
-import { TouchableOpacityProps } from 'react-native'
+import type { ReactNode } from 'react'
+import React from 'react'
+import type { TouchableOpacityProps } from 'react-native'
 import styled from 'styled-components/native'
 import { ifProp } from 'styled-tools'
 

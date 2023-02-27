@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { QueryResult } from '@apollo/client'
+import type { QueryResult } from '@apollo/client'
 
-import { DataKeys } from 'src/types'
+import type { DataKeys } from 'src/types'
 
 const reloader = (
   next: number | undefined,

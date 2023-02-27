@@ -1,6 +1,7 @@
-import React, { createContext, FC, useContext } from 'react'
+import type { FC } from 'react'
+import React, { createContext, useContext } from 'react'
 
-import { SearchState } from 'src/types'
+import type { SearchState } from 'src/types'
 
 const initialState: SearchState = {
   results: [],

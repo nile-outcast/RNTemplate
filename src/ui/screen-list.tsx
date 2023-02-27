@@ -1,9 +1,10 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
+import React from 'react'
 import { ActivityIndicator, FlatList, StyleSheet } from 'react-native'
-import { QueryResult } from '@apollo/client'
+import type { QueryResult } from '@apollo/client'
 
 import { colors } from 'src/theme/colors'
-import { DataKeys } from 'src/types'
+import type { DataKeys } from 'src/types'
 
 import { renderItems } from '.'
 import { useReloader } from './hooks'
