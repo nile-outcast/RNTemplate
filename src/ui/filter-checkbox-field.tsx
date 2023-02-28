@@ -54,7 +54,8 @@ export const FilterCheckboxField = ({ title, value, setValue }: Props) => (
       {filterFields[title].map((field, index) => (
         <FieldContainer
           key={index}
-          onPress={() => setValue(field.toLowerCase())}>
+          onPress={() => setValue(field.toLowerCase())}
+        >
           <CheckboxIcons isChecked={value === field.toLowerCase()} />
           <InfoBox index={index}>
             <FiledlText>{field}</FiledlText>

@@ -76,7 +76,8 @@ export const LocationFilters: FC<ModalMenuProps> = (props) => {
       {...props}
       isFiltered={isFiltered}
       onApply={onApply}
-      onClean={onClean}>
+      onClean={onClean}
+    >
       <SearchProvider value={nameContext}>
         <FilterTouchableField title={FilterTitles.Name} />
       </SearchProvider>

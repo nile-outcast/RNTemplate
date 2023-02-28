@@ -4,7 +4,7 @@ import styled from 'styled-components/native'
 import type { CoreCharacterFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
 
-import { ItemContainer } from './item-container'
+import { CellItemTemplate } from './cell-item-template'
 
 type Props = {
   character: CoreCharacterFields
@@ -20,12 +20,13 @@ export const CharacterItem = React.memo(({ character }: Props) => {
     })
 
   return (
-    <ItemContainer
+    <CellItemTemplate
       name={character.name}
       subtext={character.status}
-      onPress={onPress}>
+      onPress={onPress}
+    >
       <Image source={{ uri: character.image }} />
-    </ItemContainer>
+    </CellItemTemplate>
   )
 })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowIcon } from 'assets/images/icons'
+import { ScrollView, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
 import { Routes, useNavigation, useRoute } from 'src/navigation'
@@ -8,8 +8,8 @@ import {
   DetailsTitle,
   EpisodeItem,
   Loader,
-  TextSubtitle,
-  TextTitle,
+  RowItemTemplate,
+  SectionTitle as Title,
 } from 'src/ui'
 
 import { useGetFullCharacter } from './character-queries.generated'
@@ -36,31 +36,28 @@ export const CharacterDetailsScreen = () => {
     return (
       <>
         <DetailsTitle {...data.character} />
-        <InfoContainer showsVerticalScrollIndicator={false}>
+
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator={false}
+        >
           <SectionTitle>Informations</SectionTitle>
+
           <SectionBox>
-            <InfoBox>
-              <TextTitle>Gender</TextTitle>
-              <TextSubtitle>{gender}</TextSubtitle>
-            </InfoBox>
+            <RowItemTemplate title="Gender" subTitle={gender} />
+            <Divider />
 
-            <InfoBox>
-              <TextTitle>Origin</TextTitle>
-              <TextSubtitle>{origin.name}</TextSubtitle>
-            </InfoBox>
+            <RowItemTemplate title="Origin" subTitle={origin.name} />
+            <Divider />
 
-            <InfoBox>
-              <TextTitle>Type</TextTitle>
-              <TextSubtitle>{type ? type : 'unknown'}</TextSubtitle>
-            </InfoBox>
+            <RowItemTemplate title="Type" subTitle={type ? type : 'unknown'} />
+            <Divider />
 
-            <LocationBox onPress={goToLocationDetailsScreen}>
-              <InfoBox isBorder>
-                <TextTitle>Location</TextTitle>
-                <TextSubtitle>{location.name}</TextSubtitle>
-              </InfoBox>
-              <ArrowIcon />
-            </LocationBox>
+            <RowItemTemplate
+              title="Location"
+              subTitle={location.name}
+              onPress={goToLocationDetailsScreen}
+            />
           </SectionBox>
 
           <SectionTitle>Episodes</SectionTitle>
@@ -69,7 +66,7 @@ export const CharacterDetailsScreen = () => {
               <EpisodeItem key={index} index={index} episode={item} />
             ))}
           </SectionBox>
-        </InfoContainer>
+        </ScrollView>
       </>
     )
   }
@@ -77,16 +74,8 @@ export const CharacterDetailsScreen = () => {
   return null
 }
 
-const InfoContainer = styled.ScrollView`
-  flex: 1;
-  background-color: ${colors.white};
-`
-const SectionTitle = styled.Text`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 25px;
+const SectionTitle = styled(Title)`
   margin: 20px 0 10px 16px;
-  color: ${colors.gray[0]};
 `
 const SectionBox = styled.View`
   padding-left: 16px;
@@ -95,15 +84,15 @@ const SectionBox = styled.View`
   border-top-width: 0.5px;
   border-bottom-width: 0.5px;
 `
-const InfoBox = styled.View<{ isBorder?: boolean }>`
-  flex: 1;
-  padding-top: 9px;
-  padding-bottom: 11px;
+const Divider = styled.View`
+  padding-left: 16px;
   border-color: ${colors.black};
-  border-bottom-width: ${({ isBorder }) => (isBorder ? 0 : 0.5)}px;
+  border-top-width: 0.5px;
 `
-const LocationBox = styled.TouchableOpacity`
-  flex-direction: row;
-  align-items: center;
-  padding-right: 16px;
-`
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
+})

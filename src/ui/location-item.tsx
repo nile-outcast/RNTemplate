@@ -3,7 +3,7 @@ import React from 'react'
 import type { CoreLocationFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
 
-import { ItemContainer } from './item-container'
+import { CellItemTemplate } from './cell-item-template'
 
 type Props = {
   location: CoreLocationFields
@@ -19,7 +19,7 @@ export const LocationItem = React.memo(({ location }: Props) => {
     })
 
   return (
-    <ItemContainer
+    <CellItemTemplate
       name={location.name}
       subtext={location.type}
       onPress={onPress}

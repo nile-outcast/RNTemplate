@@ -13,7 +13,7 @@ type Props = {
   subtext: string
 } & TouchableOpacityProps
 
-export const ItemContainer: FC<Props> = ({
+export const CellItemTemplate: FC<Props> = ({
   name,
   subtext,
   children,
@@ -31,7 +31,6 @@ export const ItemContainer: FC<Props> = ({
 const Container = styled.TouchableOpacity<{ height: number }>`
   width: ${(Dimensions.get('window').width - 48) / 2}px;
   height: ${({ height }) => height}px;
-  margin: 10px 8px;
   border: 1px solid ${colors.gray[4]};
   border-radius: 8px;
 `

@@ -1,11 +1,16 @@
 import React from 'react'
 import { FlatList, StyleSheet } from 'react-native'
-import styled from 'styled-components/native'
 
 import type { Routes } from 'src/navigation'
 import { useRoute } from 'src/navigation'
 import { colors } from 'src/theme/colors'
-import { DetailsTitle, HeaderTitle, Loader, renderItems } from 'src/ui'
+import {
+  DetailsTitle,
+  HeaderTitle,
+  Loader,
+  renderItems,
+  SectionTitle,
+} from 'src/ui'
 
 import { useGetFullLocation } from './location-queries.generated'
 
@@ -16,12 +21,11 @@ export const LocationDetailsScreen = () => {
 
   const { data, loading } = useGetFullLocation({ variables: { id } })
 
-  const renderItem = renderItems.characters
-
   if (loading) return <Loader />
 
   if (data) {
     const { dimension, name, residents, type } = data.location
+    const renderItem = renderItems.characters
 
     return (
       <>
@@ -30,9 +34,9 @@ export const LocationDetailsScreen = () => {
         <FlatList
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
+          columnWrapperStyle={styles.columnWrapper}
           data={residents}
           renderItem={renderItem}
-          horizontal={false}
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
@@ -48,20 +52,16 @@ export const LocationDetailsScreen = () => {
   return null
 }
 
-const SectionTitle = styled.Text`
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 25px;
-  margin: 10px 0 0 8px;
-  color: ${colors.gray[0]};
-`
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
   },
   contentContainer: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+  },
+  columnWrapper: {
+    justifyContent: 'space-between',
     paddingVertical: 10,
   },
 })

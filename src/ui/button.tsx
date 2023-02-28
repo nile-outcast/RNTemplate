@@ -28,7 +28,8 @@ export const Button = ({ children, onPress, title, ...rest }: Props) => {
     <ButtonBlock
       isDisabled={Boolean(rest.disabled)}
       onPress={onPress}
-      {...rest}>
+      {...rest}
+    >
       <Title>{title}</Title>
       {children}
     </ButtonBlock>

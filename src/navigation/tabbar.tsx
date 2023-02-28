@@ -22,7 +22,8 @@ export const TabBar = () => {
       initialRouteName={Routes.CharacterScreen}
       screenOptions={{
         tabBarStyle: { backgroundColor: colors.barsLightGray },
-      }}>
+      }}
+    >
       <Tab.Screen
         name={Routes.CharacterScreen}
         component={CharacterScreen}

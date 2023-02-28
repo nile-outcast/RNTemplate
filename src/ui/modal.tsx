@@ -22,7 +22,8 @@ export const ModalMenu: FC<ModalMenuProps> = ({
     statusBarTranslucent
     backdropOpacity={0.1}
     useNativeDriver
-    hideModalContentWhileAnimating>
+    hideModalContentWhileAnimating
+  >
     <Container>
       <ChildrenBox>
         <ModalLine />

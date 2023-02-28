@@ -27,9 +27,9 @@ export const ScreenList: FC<Props> = ({ children, data, dataKey }) => {
       <FlatList
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
+        columnWrapperStyle={styles.columnWrapper}
         data={data.data?.[dataKey].results}
         renderItem={renderItem}
-        horizontal={false}
         numColumns={2}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item) => item.id}
@@ -53,7 +53,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   contentContainer: {
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+  columnWrapper: {
+    justifyContent: 'space-between',
     paddingVertical: 10,
   },
 })
