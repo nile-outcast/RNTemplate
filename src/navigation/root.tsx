@@ -5,6 +5,7 @@ import styled from 'styled-components/native'
 
 import { useAlertContext } from 'src/modules/alert-context'
 import { CharacterDetailsScreen } from 'src/modules/character'
+import { EpisodeDetailsScreen } from 'src/modules/episode'
 import { LocationDetailsScreen } from 'src/modules/location'
 import type { RootStackOptions, RootStackParams } from 'src/navigation'
 import { Routes } from 'src/navigation'
@@ -54,6 +55,11 @@ export const RootNavigation = () => {
         <Screen
           name={Routes.LocationDetailsScreen}
           component={LocationDetailsScreen}
+          options={option}
+        />
+        <Screen
+          name={Routes.EpisodeDetailsScreen}
+          component={EpisodeDetailsScreen}
           options={option}
         />
       </Navigator>

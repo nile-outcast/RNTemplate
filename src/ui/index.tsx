@@ -12,7 +12,10 @@ import { CharacterItem } from './character-item'
 import { EpisodeItem } from './episode-item'
 import { LocationItem } from './location-item'
 
-type ItemType = CoreCharacterFields | CoreLocationFields | CoreEpisodeFields
+export type ItemType =
+  | CoreCharacterFields
+  | CoreLocationFields
+  | CoreEpisodeFields
 
 export const renderItems: Record<
   DataKeys,

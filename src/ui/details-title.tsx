@@ -30,21 +30,21 @@ const Image = styled.Image`
 `
 const InfoBox = styled.View`
   align-items: center;
-  padding: 20px 0;
+  padding: 20px;
   background-color: ${colors.gray[5]};
 `
-const StatusText = styled.Text`
+const PreTitleText = styled.Text`
   font-size: 11px;
   line-height: 13px;
   color: ${colors.gray[6]};
 `
-const NameText = styled.Text`
+const TitleText = styled.Text`
   text-align: center;
   font-weight: 700;
   font-size: 28px;
   line-height: 34px;
 `
-const SpeciesText = styled.Text`
+const SubTitleText = styled.Text`
   font-weight: 900;
   font-size: 13px;
   line-height: 18px;
@@ -53,14 +53,14 @@ const SpeciesText = styled.Text`
 
 type Props = {
   image?: string
-  status: string
-  name: string
-  species: string
+  preTitle: string
+  subTitle: string
+  title: string
 }
 
-export const DetailsTitle = ({ image, status, name, species }: Props) => (
+export const DetailsTitle = ({ image, preTitle, subTitle, title }: Props) => (
   <View>
-    {image ? (
+    {image && (
       <ImagesContainer>
         <BackgroundImage
           source={require('assets/images/title-background-image.png')}
@@ -69,12 +69,12 @@ export const DetailsTitle = ({ image, status, name, species }: Props) => (
           <Image source={{ uri: image }} />
         </ImageBox>
       </ImagesContainer>
-    ) : null}
+    )}
 
     <InfoBox>
-      <StatusText>{status}</StatusText>
-      <NameText>{name}</NameText>
-      <SpeciesText>{species}</SpeciesText>
+      <PreTitleText>{preTitle}</PreTitleText>
+      <TitleText>{title}</TitleText>
+      <SubTitleText>{subTitle}</SubTitleText>
     </InfoBox>
   </View>
 )

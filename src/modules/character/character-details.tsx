@@ -25,7 +25,8 @@ export const CharacterDetailsScreen = () => {
   if (loading) return <Loader />
 
   if (data) {
-    const { episode, gender, location, origin, type } = data.character
+    const { episode, gender, location, name, origin, species, status, type } =
+      data.character
 
     const goToLocationDetailsScreen = () =>
       navigate(Routes.LocationDetailsScreen, {
@@ -35,7 +36,7 @@ export const CharacterDetailsScreen = () => {
 
     return (
       <>
-        <DetailsTitle {...data.character} />
+        <DetailsTitle preTitle={status} subTitle={species} title={name} />
 
         <ScrollView
           style={styles.container}

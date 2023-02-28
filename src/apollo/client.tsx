@@ -39,6 +39,10 @@ const client = new ApolloClient({
             keyArgs: ['filter', ['name', 'species', 'status', 'gender']],
             merge,
           },
+          episodes: {
+            keyArgs: ['filter', ['name', 'episode']],
+            merge,
+          },
           locations: {
             keyArgs: ['filter', ['name', 'type', 'dimension']],
             merge,

@@ -12,38 +12,38 @@ import {
   SectionTitle,
 } from 'src/ui'
 
-import { useGetFullLocation } from './location-queries.generated'
+import { useGetFullEpisode } from './episode-queries.generated'
 
-export const LocationDetailsScreen = () => {
+export const EpisodeDetailsScreen = () => {
   const {
     params: { id },
   } = useRoute<Routes.LocationDetailsScreen>()
 
-  const { data, loading } = useGetFullLocation({ variables: { id } })
+  const { data, loading } = useGetFullEpisode({ variables: { id } })
 
   if (loading) return <Loader />
 
   if (data) {
-    const { dimension, name, residents, type } = data.location
+    const { air_date, characters, episode, name } = data.episode
     const renderItem = renderItems.characters
 
     return (
       <>
-        <DetailsTitle preTitle={type} subTitle={dimension} title={name} />
+        <DetailsTitle preTitle={air_date} subTitle={episode} title={name} />
 
         <FlatList
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
           columnWrapperStyle={styles.columnWrapper}
-          data={residents}
+          data={characters}
           renderItem={renderItem}
           numColumns={2}
           showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           ListHeaderComponent={
-            residents.length ? <SectionTitle>Residents</SectionTitle> : null
+            characters.length ? <SectionTitle>Characters</SectionTitle> : null
           }
-          ListEmptyComponent={<HeaderTitle>No Residents</HeaderTitle>}
+          ListEmptyComponent={<HeaderTitle>No Characters</HeaderTitle>}
         />
       </>
     )

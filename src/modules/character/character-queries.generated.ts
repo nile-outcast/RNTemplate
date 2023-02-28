@@ -3,10 +3,10 @@ import * as Apollo from '@apollo/client'
 
 import {
   CoreCharacterFields,
+  CoreEpisodeFields,
   CoreInfoFields,
   CoreLocationFields,
 } from '../../apollo/fragments.generated'
-import { CoreEpisodeFields } from '../../apollo/fragments.generated'
 import type * as Types from '../../apollo/types'
 
 const defaultOptions = {} as const
