@@ -8,9 +8,9 @@ import {
   StyleSheet,
 } from 'react-native'
 import type { QueryResult } from '@apollo/client'
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 
-import { colors } from 'src/theme/colors'
+import { colors } from 'src/theme'
 import type { DataKeys } from 'src/types'
 
 import type { ItemType } from '.'
@@ -52,10 +52,12 @@ export const ScreenList: FC<Props> = ({ children, dataKey, data }) => {
         <SectionList
           {...listProps}
           sections={sections}
-          renderItem={renderItem}
+          renderItem={(info) => <ItemBox>{renderItem(info)}</ItemBox>}
           renderSectionHeader={({ section: { title } }) => (
             <SectionTitle>{title}</SectionTitle>
           )}
+          stickySectionHeadersEnabled={false}
+          SectionSeparatorComponent={SectionSeparatorComponent}
         />
         {children}
       </>
@@ -77,11 +79,34 @@ export const ScreenList: FC<Props> = ({ children, dataKey, data }) => {
   )
 }
 
-const SectionTitle = styled(Title)`
-  border-top-width: 0.5;
-  border-bottom-width: 0.5;
-  padding: 20px 0 10px 16px;
+const ItemBox = styled.View`
+  padding-left: 16px;
 `
+const SectionTitle = styled(Title)`
+  padding: 20px 0 0 16px;
+`
+const sectionSeparatorStyles = {
+  bottom: css`
+    height: 10px;
+    border-bottom-width: 1px;
+  `,
+  top: css`
+    height: 20px;
+    border-top-width: 1px;
+  `,
+}
+
+const SectionSeparator = styled.View<{ isBottom: boolean }>`
+  border-color: ${colors.gray[2]};
+  ${({ isBottom }) =>
+    isBottom ? sectionSeparatorStyles.bottom : sectionSeparatorStyles.top}
+`
+
+const SectionSeparatorComponent = ({
+  trailingItem,
+}: {
+  trailingItem?: Record<string, unknown>
+}) => <SectionSeparator isBottom={!!trailingItem} />
 
 const styles = StyleSheet.create({
   container: {

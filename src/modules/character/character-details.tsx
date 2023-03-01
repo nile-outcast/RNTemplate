@@ -3,9 +3,10 @@ import { ScrollView, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
 
 import { Routes, useNavigation, useRoute } from 'src/navigation'
-import { colors } from 'src/theme/colors'
+import { colors } from 'src/theme'
 import {
   DetailsTitle,
+  Divider,
   EpisodeItem,
   Loader,
   RowItemTemplate,
@@ -81,14 +82,9 @@ const SectionTitle = styled(Title)`
 const SectionBox = styled.View`
   padding-left: 16px;
   margin-bottom: 20px;
-  border-color: ${colors.black};
-  border-top-width: 0.5px;
-  border-bottom-width: 0.5px;
-`
-const Divider = styled.View`
-  padding-left: 16px;
-  border-color: ${colors.black};
-  border-top-width: 0.5px;
+  border-color: ${colors.gray[2]};
+  border-top-width: 1px;
+  border-bottom-width: 1px;
 `
 
 const styles = StyleSheet.create({

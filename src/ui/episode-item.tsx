@@ -3,8 +3,9 @@ import styled from 'styled-components/native'
 
 import type { CoreEpisodeFields } from 'src/apollo/fragments.generated'
 import { Routes, useNavigation } from 'src/navigation'
-import { colors } from 'src/theme/colors'
+import { colors } from 'src/theme'
 
+import { Divider } from './divider'
 import { RowItemTemplate } from './row-item-template'
 
 type Props = {
@@ -43,9 +44,4 @@ const EpisodeDate = styled.Text`
   line-height: 13px;
   text-transform: uppercase;
   color: ${colors.gray[0]};
-`
-const Divider = styled.View`
-  padding-left: 16px;
-  border-color: ${colors.black};
-  border-top-width: 0.5px;
 `
